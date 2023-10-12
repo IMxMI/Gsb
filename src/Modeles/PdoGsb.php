@@ -90,7 +90,7 @@ class PdoGsb
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-    public function getInfosVisiteur($login, $mdp): array|bool
+    public function getLoginUser($login, $mdp): array|bool
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT login.id AS id, login.metier AS metier '
