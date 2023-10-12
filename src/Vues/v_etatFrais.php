@@ -74,3 +74,4 @@
         ?>
     </table>
 </div>
+<?php echo $_SESSION['metier']; ?>

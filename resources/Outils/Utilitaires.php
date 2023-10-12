@@ -20,31 +20,32 @@ namespace Outils;
 abstract class Utilitaires
 {
     /**
-     * Teste si un quelconque visiteur est connecté
+     * Teste si un quelconque utilisateur est connecté
      *
      * @return vrai ou faux
      */
     public static function estConnecte(): bool
     {
-        return isset($_SESSION['idVisiteur']);
+        return isset($_SESSION['idUser']);
     }
-
+    
     /**
-     * Enregistre dans une variable session les infos d'un visiteur
+     * Enregistre dans une variable session les infos d'un utilisateur
      *
-     * @param String $idVisiteur ID du visiteur
+     * @param String $idUser ID de l'utilisateur
      * @param String $nom        Nom du visiteur
      * @param String $prenom     Prénom du visiteur
      *
      * @return null
      */
-    public static function connecter($idVisiteur, $nom, $prenom): void
+    public static function connecter($idUser, $nom, $prenom, $metier): void
     {
-        $_SESSION['idVisiteur'] = $idVisiteur;
+        $_SESSION['idUser'] = $idUser;
         $_SESSION['nom'] = $nom;
         $_SESSION['prenom'] = $prenom;
+        $_SESSION['metier'] = $metier;
     }
-
+    
     /**
      * Détruit la session active
      *
