@@ -106,8 +106,7 @@ class PdoGsb
         /**
      * Retourne les informations d'un visiteur
      *
-     * @param String $login Login du visiteur
-     * @param String $mdp   Mot de passe du visiteur
+     * @param Int $id   identifiant du login du visiteur
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
@@ -124,10 +123,9 @@ class PdoGsb
     }
     
             /**
-     * Retourne les informations d'un visiteur
+     * Retourne les informations d'un comptable
      *
-     * @param String $login Login du visiteur
-     * @param String $mdp   Mot de passe du visiteur
+     * @param Int $id   identifiant de login du comptable
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */

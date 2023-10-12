@@ -22,8 +22,8 @@
 </div>
 <div id="accueil">
     <h2>
-        Gestion des frais<small> - Visiteur : 
-            <?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></small>
+        Gestion des frais<small> -  
+            <?= ucfirst($_SESSION['metier']) . " : " . $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></small>
     </h2>
 </div>
 <div class="row">

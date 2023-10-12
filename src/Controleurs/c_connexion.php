@@ -39,11 +39,11 @@ switch ($action) {
             $metier = $userLogin['metier'];
             if($metierid = 'VI'){
                 $user = $pdo->getInfoVisiteur($idLogin);
-                $userSession = 'visiteur';
+                $metierSession = 'visiteur';
             }
             else{
                 $user = $pdo->getInfoComptable($idLogin);
-                $userSession = 'comptable';
+                $metierSession = 'comptable';
             };
             if (!is_array($user)){
                 Utilitaires::ajouterErreur('Erreur de connexion');
@@ -53,7 +53,7 @@ switch ($action) {
                 $id = $user['id'];
                 $nom = $user['nom'];
                 $prenom = $user['prenom'];
-                Utilitaires::connecter($id, $nom, $prenom, $metier);
+                Utilitaires::connecter($id, $nom, $prenom, $metierSession);
                 header('Location: index.php');
             }
         }
