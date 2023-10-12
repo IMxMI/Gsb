@@ -29,15 +29,28 @@ switch ($action) {
     case 'valideConnexion':
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $user = $pdo->getLoginUser($login, $mdp);
+        $userLogin = $pdo->getLoginUser($login, $mdp);
         if (!is_array($visiteur)) {
             Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_connexion.php';
         } else {
-            $id = $user['id'];
-            Utilitaires::connecter($id, $nom, $prenom);
-            header('Location: index.php');
+            $idLogin = $userLogin['id'];
+            $metierid = $userLogin['metier'];
+            if($metierid = 'VI'){$metier = 'visiteur';}
+            else{$metier = 'comptable';};
+            $user = $pdo->getInfoUser($idLogin, $metier);
+            if (!is_array($user)){
+                Utilitaires::ajouterErreur('Erreur de connexion');
+                include PATH_VIEWS . 'v_erreurs.php';
+                include PATH_VIEWS . 'v_connexion.php';
+            }else{
+                $id = $user['id'];
+                $nom = $user['nom'];
+                $prenom = $user['prenom'];
+                Utilitaires::connecter($id, $nom, $prenom, $metierid);
+                header('Location: index.php');   
+            }
         }
         break;
     default:
