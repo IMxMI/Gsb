@@ -111,15 +111,34 @@ class PdoGsb
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-    public function getInfoUser($id, $metier): array|bool
+    public function getInfoVisiteur($id): array|bool
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT id, nom, prenom '
-            . 'FROM :unMetier '
+            . 'FROM visiteur '
             . 'WHERE idlogin = :unId'
         );
-        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMetier', $metier, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_INT);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch();
+    }
+    
+            /**
+     * Retourne les informations d'un visiteur
+     *
+     * @param String $login Login du visiteur
+     * @param String $mdp   Mot de passe du visiteur
+     *
+     * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
+     */
+    public function getInfoComptable($id): array|bool
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT id, nom, prenom '
+            . 'FROM comptable '
+            . 'WHERE idlogin = :unId'
+        );
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_INT);
         $requetePrepare->execute();
         return $requetePrepare->fetch();
     }
