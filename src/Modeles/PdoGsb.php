@@ -90,7 +90,11 @@ class PdoGsb
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
+<<<<<<< Updated upstream
     public function getLoginUser($login, $mdp): array|bool
+=======
+    public function getInfosVisiteur($login, $mdp): array|bool
+>>>>>>> Stashed changes
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT login.id AS id, login.metier AS metier '
@@ -103,6 +107,7 @@ class PdoGsb
         return $requetePrepare->fetch();
     }
     
+<<<<<<< Updated upstream
         /**
      * Retourne les informations d'un visiteur
      *
@@ -139,8 +144,19 @@ class PdoGsb
             . 'WHERE idlogin = :unId'
         );
         $requetePrepare->bindParam(':unId', $id, PDO::PARAM_INT);
+=======
+    public function getInfosLogin($login, $mdp): array{
+        $requetePrepare = $this->connexion->prepare(
+                'SELECT id, login, mdp'
+               . 'FROM login '
+               . 'WHERE login = :unLogin AND mdp = :unMdp' 
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
+>>>>>>> Stashed changes
         $requetePrepare->execute();
         return $requetePrepare->fetch();
+                   
     }
 
     /**
