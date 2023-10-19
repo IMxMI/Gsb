@@ -137,6 +137,8 @@ class PdoGsb
             . 'WHERE idlogin = :unId'
         );
         $requetePrepare->bindParam(':unId', $id, PDO::PARAM_INT);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch();
     }
     
     /**

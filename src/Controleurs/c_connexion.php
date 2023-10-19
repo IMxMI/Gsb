@@ -37,7 +37,7 @@ switch ($action) {
         } else {
             $idLogin = $userLogin['id'];
             $metier = $userLogin['metier'];
-            if($metierid = 'VI'){
+            if($metier == 'VI'){
                 $user = $pdo->getInfoVisiteur($idLogin);
                 $metierSession = 'visiteur';
             }
