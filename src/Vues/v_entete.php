@@ -52,10 +52,11 @@
                                     Accueil
                                 </a>
                             </li>
-                            <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
+                            <li <?php if ($uc == 'gererFrais' || $uc == 'validerFrais' ) { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=gererFrais&action=saisirFrais">
                                     <span class="glyphicon glyphicon-pencil"></span>
-                                    Renseigner la fiche de frais
+                                <?php if ($_SESSION['metier'] == 'comptable') { ?>Valider les fiches de frais<?php }
+                                else { ?>Renseigner la fiche de frais<?php }?>
                                 </a>
                             </li>
                             <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
