@@ -52,19 +52,33 @@
                                     Accueil
                                 </a>
                             </li>
-                            <li <?php if ($uc == 'gererFrais' || $uc == 'validerFrais' ) { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=gererFrais&action=saisirFrais">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                <?php if ($_SESSION['metier'] == 'comptable') { ?>Valider les fiches de frais<?php }
-                                else { ?>Renseigner la fiche de frais<?php }?>
-                                </a>
-                            </li>
-                            <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=etatFrais&action=selectionnerMois">
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Afficher mes fiches de frais
-                                </a>
-                            </li>
+                            <?php if ($_SESSION['metier'] == 'visiteur') { ?>
+                                <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
+                                    <a href="index.php?uc=gererFrais&action=saisirFrais">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                        Renseigner la fiche de frais
+                                    </a>
+                                </li>
+                                <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
+                                    <a href="index.php?uc=etatFrais&action=selectionnerMois">
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                        Afficher mes fiches de frais
+                                    </a>
+                                </li>
+                            <?php } elseif ($_SESSION['metier'] == 'comptable') { ?>
+                                <li <?php if ($uc == 'validerFrais') { ?>class="active"<?php } ?>>
+                                    <a href="index.php?uc=validerFrais&action=selectionnerMoisVisiteur">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                        Valider les fiches de frais
+                                    </a>
+                                </li>
+                                <li <?php if ($uc == 'suiviFicheFrais') { ?>class="active"<?php } ?>>
+                                    <a href="index.php?uc=suiviFicheFrais&action=actionADefinir">
+                                        <span class="glyphicon glyphicon-euro"></span>
+                                        Suivre le paiement des fiches de frais
+                                    </a>
+                                </li>
+                            <?php } ?>
                             <li 
                             <?php if ($uc == 'deconnexion') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=deconnexion&action=demandeDeconnexion">
