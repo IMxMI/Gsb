@@ -15,11 +15,12 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
-?>
+if ($_SESSION['metier'] == 'visiteur') { ?>
 <div class="alert alert-warning" role="alert"><strong>Rappel : </strong>Vos frais sont à déclarer au plus tard le dernier jour du mois 
 	et vos factures acquittées doivent être arrivées aux services comptables au plus tard le 10 du mois suivant la saisie.
 	Les éléments reçus après le 10 seront reportés sur le mois suivant.
 </div>
+<?php } ?>
 <div id="accueil">
     <h2>
         Gestion des frais<small> -  
