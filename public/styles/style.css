@@ -32,3 +32,7 @@ footer .container p {
 code {
   font-size: 80%;
 }
+
+element {
+    --comptable-main-color: #FF8800;
+}
