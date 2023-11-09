@@ -141,6 +141,19 @@ class PdoGsb
         return $requetePrepare->fetch();
     }
     
+            /**
+     * Retourne la liste de tous les visiteurs.
+    */
+    public function getVisiteurs(): array
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT id, nom, prenom '
+            . 'FROM visiteur.'
+        );
+        $requetePrepare->execute();
+        return $requetePrepare->fetch();
+    }
+    
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
      * hors forfait concernées par les deux arguments.
