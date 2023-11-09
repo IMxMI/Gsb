@@ -147,11 +147,11 @@ class PdoGsb
     public function getVisiteurs(): array
     {
         $requetePrepare = $this->connexion->prepare(
-            'SELECT id, nom, prenom '
-            . 'FROM visiteur.'
+            'select id, nom, prenom '
+            . 'from visiteur'
         );
         $requetePrepare->execute();
-        return $requetePrepare->fetch();
+        return $requetePrepare->fetchAll(PDO::FETCH_ASSOC);
     }
     
     /**
