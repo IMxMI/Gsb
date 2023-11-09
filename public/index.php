@@ -55,7 +55,8 @@ switch ($uc) {
     case 'validerFrais';
         include PATH_CTRLS . 'c_validerFrais.php';
         break;
-    case '';
+    case 'suiviFicheFrais';
+        include PATH_CTRLS . 'c_suiviFicheFrais';
         break;
     default:
         Utilitaires::ajouterErreur('Page non trouvée, veuillez vérifier votre lien...');
