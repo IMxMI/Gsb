@@ -14,3 +14,13 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
+use Outils\Utilitaires;
+
+$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$visiteurs = $pdo->getVisiteurs();
+switch ($action) {
+    case 'selectionnerMoisVisiteur':
+        var_dump($visiteurs);
+        break;        
+}
+
