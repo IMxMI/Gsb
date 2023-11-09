@@ -73,8 +73,8 @@ $lesFraisForfait = getLesFraisForfait($nomVisiteur, $dateDuJour); // Remplacez c
                 </select>
                 
                 
-                <button class="btn btn-success" type="submit">Ajouter</button>
-                <button class="btn btn-danger" type="reset">Effacer</button>
+                <button class="btn btn-success" type="submit">Corriger</button>
+                <button class="btn btn-danger" type="reset">Rénitialiser</button>
             </fieldset>
         </form>
     </div>
