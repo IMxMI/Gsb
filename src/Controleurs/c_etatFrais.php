@@ -14,7 +14,6 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 use Outils\Utilitaires;
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -44,14 +43,16 @@ switch ($action) {
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
         include PATH_VIEWS . 'v_etatFrais.php';
-        
-         case 'selectionnerVisiteur':
-        $lesVisiteurs = $pdo->getLesMoisDisponibles($idVisiteur);
-        // Afin de sélectionner par défaut le dernier mois dans la zone de liste
-        // on demande toutes les clés, et on prend la première,
-        // les mois étant triés décroissants
-        $lesCles = array_keys($lesVisiteurs);
-        $moisASelectionner = $lesCles[0];
-        include PATH_VIEWS . 'v_choixLeVisiteur.php';
         break;
+    //case 'validerfrais';
+    // $lesVisiteurs = $pdo->getListeVisiteur();
+    // $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
+    //
+    //
+    //
+    // $lesCles =array_keys($lesVisiteurs);
+    //     $visiteursASelectionner = $lesCles[0];
+    //   $lesClesBis = array_keys($lesMois);
+    // $moisASelectionner = $lesClesBis[0];
+    //   include PATH_VIEWS '';
 }

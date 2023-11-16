@@ -14,29 +14,11 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
-//permet d'importer la classe 'visiteur'
-require_once ('modele/Visiteur.php');
-//Récupération du visiteur connecté
-$visiteur = Visiteur::getVisiteurConnecte();
-
-//vérification de la date du jour
-$aujourdhui = date('Y-m-d');
-$numMois = date('m');
-$numAnnee = date('Y');
 ?>
 <div class="row"> 
-    ><!-- Si le visiteur est connecté en tant que comptable, le message "Valider la fiche de frais" est affiché. -->
-    <?php if ($visiteur['statut'] == 'comptable') { ?>
-    <-<!-- Si le visiteur est connecté en tant que visiteur, le message "Renseigner ma fiche de frais du mois" est affiché.
- -->
-    <h2>Valider la fiche de frais du mois 
-        <?php echo $numMois . '-' . $numAnnee ?>
-    </h2>
-    <?php } else { ?>
         <h2>Renseigner ma fiche de frais du mois 
             <?php echo $numMois . '-' . $numAnnee ?>
         </h2>
-<?php ?>
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">
         <form method="post" 

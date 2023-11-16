@@ -22,6 +22,19 @@ switch ($action) {
     case 'selectionnerMoisVisiteur':
         var_dump($visiteurs);
         include PATH_VIEWS . "v_choixLeVisiteur.php";
-        break;        
+        include PATH_VIEWS . "v_FraisHorsForfaitCmpta.php";
+        break;
+    case 'validerfrais';
+        $lesVisiteurs = $pdo->getListeVisiteur();
+        $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
+        //
+        //
+        //
+        $lesCles = array_keys($lesVisiteurs);
+        $visiteursASelectionner = $lesCles[0];
+        $lesClesBis = array_keys($lesMois);
+        $moisASelectionner = $lesClesBis[0];
+       // include PATH_VIEWS . "v_choixLeVisiteur.php";
+        break;
 }
 
