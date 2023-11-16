@@ -18,7 +18,7 @@
 use Outils\Utilitaires;
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$idVisiteur = $_SESSION['idVisiteur'];
+$idVisiteur = $_SESSION['idUser'];
 switch ($action) {
     case 'selectionnerMois':
         $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
