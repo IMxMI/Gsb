@@ -14,3 +14,7 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
+
+$testFiche= $pdo->getFicheFraisValid();
+
+include_once PATH_VIEWS . 'v_suiviFrais.php';

@@ -17,7 +17,7 @@
 
 use Outils\Utilitaires;
 
-$idVisiteur = $_SESSION['idVisiteur'];
+$idVisiteur = $_SESSION['idUser'];
 $mois = Utilitaires::getMois(date('d/m/Y'));
 $numAnnee = substr($mois, 0, 4);
 $numMois = substr($mois, 4, 2);

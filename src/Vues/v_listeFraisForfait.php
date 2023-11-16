@@ -15,22 +15,24 @@
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
 ?>
-<div class="row"> 
-        <h2>Renseigner ma fiche de frais du mois 
-            <?php echo $numMois . '-' . $numAnnee ?>
-        </h2>
+
+<div class="row">    
+    <h2>Renseigner ma fiche de frais du mois 
+        <?php echo $numMois . '-' . $numAnnee ?>
+    </h2>
+
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">
         <form method="post" 
               action="index.php?uc=gererFrais&action=validerMajFraisForfait" 
               role="form">
             <fieldset>       
-<?php
-foreach ($lesFraisForfait as $unFrais) {
-    $idFrais = $unFrais['idfrais'];
-    $libelle = htmlspecialchars($unFrais['libelle']);
-    $quantite = $unFrais['quantite'];
-    ?>
+                <?php
+                foreach ($lesFraisForfait as $unFrais) {
+                    $idFrais = $unFrais['idfrais'];
+                    $libelle = htmlspecialchars($unFrais['libelle']);
+                    $quantite = $unFrais['quantite'];
+                    ?>
                     <div class="form-group">
                         <label for="idFrais"><?php echo $libelle ?></label>
                         <input type="text" id="idFrais" 
@@ -42,15 +44,6 @@ foreach ($lesFraisForfait as $unFrais) {
                     <?php
                 }
                 ?>
-                <?php if ($aujourdhui == $numMois . '-' . $numAnnee) { ?>
-                    <input type="hidden" name="dateFrais" value="<?php echo $aujourdhui ?>">
-                    <input type="hidden" name="mois" value="<?php echo $numMois ?>">
-                <?php } else { ?>
-                    <input type="date" name="dateFrais" required>
-                    <input type="text" name="mois" required>
-                <?php } ?>
-        
-                <input type='hidden' name="nom" value="<?php echo $visiteur['nom'] ?>">
                 <button class="btn btn-success" type="submit">Ajouter</button>
                 <button class="btn btn-danger" type="reset">Effacer</button>
             </fieldset>

@@ -507,6 +507,7 @@ class PdoGsb {
         $requetePrepare->execute();
     }
 
+
     public function getListeVisiteur(): array {
         $requetePrepare = $this->connexion->prepare(
         'SELECT visiteur.id AS id, visiteur.nom AS nom, visiteur.prenom AS prenom FROM visiteur'
@@ -525,5 +526,22 @@ class PdoGsb {
             );
         }
         return $lesVisiteurs;
+    }
+    
+        /**
+     * Retourne l'ensemble des fichesFrais validée.
+     *
+     * @return array
+     */
+    public function getFicheFraisValid(): array|null
+    {
+        $requetePrepare = $this->connexion->prepare(
+            "select visiteur.nom, visiteur.prenom, fichefrais.mois, fichefrais.montantvalide "
+            . "from fichefrais inner join visiteur on fichefrais.idvisiteur = visiteur.id  "
+            . "WHERE fichefrais.idetat = 'VA'  "
+        );
+        $requetePrepare->execute();
+        return $requetePrepare->fetchAll();
+
     }
 }
