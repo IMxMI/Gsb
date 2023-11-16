@@ -68,25 +68,21 @@
                                         </a>
                                     </li>
                                 <?php } elseif ($_SESSION['metier'] == 'comptable') { ?>
-                                    <li class="<?php if ($uc == 'validerFrais') {echo $active;}?>">
-                                        <a href="index.php?uc=validerFrais&action=selectionnerMoisVisiteur"
-                                            <span class="glyphicon glyphicon-ok"></span>
-                                            Valider les fiches de frais
-                                        </a>
-                                    </li>
-                                    <li class="<?php if ($uc == 'suiviFicheFrais') {echo $active;}?>">
-                                        <a href="index.php?uc=suiviFicheFrais&action=actionADefinir"
-                                            <span class="glyphicon glyphicon-euro"></span>
-                                            Suivre le paiement des fiches de frais
-                                        </a>
-                                    </li>
+                                    <li class="<?php if ($uc == 'validerFrais') { echo $active; } ?>">
+                                    <a href="index.php?uc=validerFrais&action=selectionnerMoisVisiteur">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                        Valider les fiches de frais
+                                    </a>
+                                </li>
+                                <li class=" <?php if ($uc == 'suiviFicheFrais') { echo $active; } ?>">
+                                    <a href="index.php?uc=suiviFicheFrais&action=actionADefinir">
+                                        <span class="glyphicon glyphicon-euro"></span>
+                                        Suivre le paiement des fiches de frais
+                                    </a>
+                                </li>
                                 <?php } ?>
-                                <li class="<?php if ($uc == 'deconnexion') {echo $active;}?>">
-                                    <a href="index.php?uc=deconnexion&action=demandeDeconnexion" <?php
-                                    if ($uc == 'deconnexion') {
-                                        $active;
-                                    }
-                                    ?>>
+                                <li class="<?php if ($uc == 'deconnexion') { echo $active; } ?>">
+                                    <a href="index.php?uc=deconnexion&action=demandeDeconnexion">
                                         <span class="glyphicon glyphicon-log-out"></span>
                                         Déconnexion
                                     </a>

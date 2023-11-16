@@ -41,3 +41,13 @@ code {
     background-color: #FF8800 !important;
     color: white !important;
 }
+
+.panel-comptable {
+    color: white !important;
+    border-color: #FF8800 !important;
+}
+
+.panel-heading-comptable {
+    background-color: #FF8800 !important;
+    border-color: #FF8800 !important;
+}
