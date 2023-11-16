@@ -29,7 +29,7 @@ if ($_SESSION['metier'] == 'visiteur') { ?>
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary <?php if($_SESSION['metier'] == 'visiteur') { ?><?php } else { ?> panel-comptable<?php } ?>">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <span class="glyphicon glyphicon-bookmark"></span>

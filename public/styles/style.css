@@ -36,3 +36,8 @@ code {
 element {
     --comptable-main-color: #FF8800;
 }
+
+
+.comptable{
+    background-color: #FF8800 !important;
+}

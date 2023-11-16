@@ -49,3 +49,7 @@ DROP mdp;
 
 ALTER TABLE visiteur
 DROP login;
+
+select id, nom, prenom from visiteur;
+
+mysqldump -u root gsb_frais > C:\Users\maxim\Desktop\fichier.sql
