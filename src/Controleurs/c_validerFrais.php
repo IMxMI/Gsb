@@ -21,6 +21,7 @@ $visiteurs = $pdo->getVisiteurs();
 switch ($action) {
     case 'selectionnerMoisVisiteur':
         var_dump($visiteurs);
+        include PATH_VIEWS . "v_choixLeVisiteur.php";
         break;        
 }
 

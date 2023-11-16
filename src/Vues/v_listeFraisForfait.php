@@ -67,7 +67,7 @@ foreach ($lesFraisForfait as $unFrais) {
                     <input type="date" name="dateFrais" required>
                     <input type="text" name="mois" required>
                 <?php } ?>
-        //permet de pré-remplir le champs 'nom' avec le nom visiteur
+        
                 <input type='hidden' name="nom" value="<?php echo $visiteur['nom'] ?>">
                 <button class="btn btn-success" type="submit">Ajouter</button>
                 <button class="btn btn-danger" type="reset">Effacer</button>

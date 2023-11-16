@@ -44,4 +44,14 @@ switch ($action) {
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
         include PATH_VIEWS . 'v_etatFrais.php';
+        
+         case 'selectionnerVisiteur':
+        $lesVisiteurs = $pdo->getLesMoisDisponibles($idVisiteur);
+        // Afin de sélectionner par défaut le dernier mois dans la zone de liste
+        // on demande toutes les clés, et on prend la première,
+        // les mois étant triés décroissants
+        $lesCles = array_keys($lesVisiteurs);
+        $moisASelectionner = $lesCles[0];
+        include PATH_VIEWS . 'v_choixLeVisiteur.php';
+        break;
 }
