@@ -1,4 +1,4 @@
 <?php
 
-var_dump()
+var_dump($testFiche);
 

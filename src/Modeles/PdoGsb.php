@@ -528,4 +528,20 @@ class PdoGsb
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
+    
+        /**
+     * Retourne l'ensemble des fichesFrais validée.
+     *
+     * @return array
+     */
+    public function getFicheFraisValid(): array|null
+    {
+        $requetePrepare = $this->connexion->prepare(
+            "select visiteur.nom, visiteur.prenom, fichefrais.mois, fichefrais.montantvalide "
+            . "from fichefrais inner join visiteur on fichefrais.idvisiteur = visiteur.id  "
+            . "WHERE fichefrais.idetat = 'VA'  "
+        );
+        $requetePrepare->execute();
+        return $requetePrepare->fetchAll();
+    }
 }
