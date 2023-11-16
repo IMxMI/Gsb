@@ -33,11 +33,11 @@ code {
   font-size: 80%;
 }
 
-element {
-    --comptable-main-color: #FF8800;
+.comptable > li > a {
+    color: #FF8800;
 }
 
-
-.comptable{
+.activecomptable > a {
     background-color: #FF8800 !important;
+    color: white !important;
 }
