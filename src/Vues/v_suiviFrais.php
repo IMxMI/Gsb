@@ -1,33 +1,38 @@
 <?php ?>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <td scope="col">Visiteurs</td>
-            <td scope="col">Mois</td>
-            <td scope="col">Total forfait</td>
-            <td scope="col">Total hors forfait</td>
-            <td scope="col">Montant validé</td>
-            <td scope="col">Mise en paiement</td>
-        </tr>
-    </thead>
-    <tbody>
-
-        <?php
-        foreach ($testFiche as $test) {
-            ?>
+<div class="panel panel-warning">
+    <div class="panel-heading">Liste des fiches de frais validées</div>
+    <table class="table table-striped table-hover">
+        <thead>
             <tr>
-                <td><?php
-                    echo $test['nom']. ' ';
-                    echo $test['prenom'];
-                    ?></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <th>Visiteurs</th>
+                <th>Mois</th>
+                <th>Total forfait</th>
+                <th>Total hors forfait</th>
+                <th>Montant validé</th>
+                <th>Mise en paiement</th>
             </tr>
-        <?php };
-        ?>
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            <?php
+            foreach ($testFiche as $test) {
+                ?>
+                <tr id="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>">
+                    <td><?php
+                        echo $test['nom'] . ' ';
+                        echo $test['prenom'];
+                        ?></td>
+                    <td><?php
+                        echo $test['mois'];
+                        ?></td>
+                    <td>A REMPLIR</td>
+                    <td>A REMPLIR</td>
+                    <td><?php
+                        echo $test['montantvalide'] . '€';
+                        ?></td>
+                    <td></td>
+                </tr>
+            <?php };
+            ?>
+        </tbody>
+    </table>
+</div>

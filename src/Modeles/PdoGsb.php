@@ -536,7 +536,7 @@ class PdoGsb {
     public function getFicheFraisValid(): array|null
     {
         $requetePrepare = $this->connexion->prepare(
-            "select visiteur.nom, visiteur.prenom, fichefrais.mois, fichefrais.montantvalide "
+            "select fichefrais.idvisiteur, visiteur.nom, visiteur.prenom, fichefrais.mois, fichefrais.montantvalide "
             . "from fichefrais inner join visiteur on fichefrais.idvisiteur = visiteur.id  "
             . "WHERE fichefrais.idetat = 'VA'  "
         );
