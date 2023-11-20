@@ -1,7 +1,6 @@
 <?php ?>
-<button class="label label-default"></button>
 <div class="panel panel-warning">
-    <div class="panel-heading">Liste des fiches de frais validées</div>
+    <div class="panel-heading">Liste des fiches de frais validées<button type="button" class="btn btn-secondary" style="float:inline-end">Secondary</button></div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
