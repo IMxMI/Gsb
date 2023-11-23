@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Vue Liste des frais hors forfait
  *
@@ -15,7 +14,6 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
-
 ?>
 <hr>
 <div class="row">
@@ -31,26 +29,27 @@
                 </tr>
             </thead>  
             <tbody>
-            <?php
-            foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
-                $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
-                $date = $unFraisHorsForfait['date'];
-                $montant = $unFraisHorsForfait['montant'];
-                $id = $unFraisHorsForfait['id']; ?>           
-                <tr>
-                    <td> <?php echo $date ?></td>
-                    <td> <?php echo $libelle ?></td>
-                    <td><?php echo $montant ?></td>
-                    <td>
-                        <a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" 
-                           onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">
-                            Supprimer ce frais
-                        </a>
-                    </td>
-                </tr>
-                <?php
-            }
-            ?>
+<?php
+foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
+    $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
+    $date = $unFraisHorsForfait['date'];
+    $montant = $unFraisHorsForfait['montant'];
+    $id = $unFraisHorsForfait['id'];
+    ?>           
+                    <tr>
+                        <td> <?php echo $date ?></td>
+                        <td> <?php echo $libelle ?></td>
+                        <td><?php echo $montant ?></td>
+                        <td>
+                            <a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" 
+                               onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">
+                                Supprimer ce frais
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </tbody>  
         </table>
     </div>

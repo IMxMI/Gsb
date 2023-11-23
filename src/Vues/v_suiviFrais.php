@@ -10,7 +10,7 @@
                 <th>Total hors forfait</th>
                 <th>Montant validé</th>
                 <th><center>Mise en paiement</center></th>
-            </tr>
+        </tr>
         </thead>
         <tbody>
             <?php
@@ -30,9 +30,9 @@
                         echo $test['montantvalide'] . '€';
                         ?></td>
                     <td><center><input type="checkbox" idCheckBox="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>"></center></td>
-                </tr>
-            <?php };
-            ?>
+            </tr>
+        <?php };
+        ?>
         </tbody>
     </table>
 </div>

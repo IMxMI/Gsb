@@ -14,7 +14,6 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 use Outils\Utilitaires;
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -37,19 +36,18 @@ switch ($action) {
         } else {
             $idLogin = $userLogin['id'];
             $metier = $userLogin['metier'];
-            if($metier == 'VI'){
+            if ($metier == 'VI') {
                 $user = $pdo->getInfoVisiteur($idLogin);
                 $metierSession = 'visiteur';
-            }
-            else{
+            } else {
                 $user = $pdo->getInfoComptable($idLogin);
                 $metierSession = 'comptable';
             };
-            if (!is_array($user)){
+            if (!is_array($user)) {
                 Utilitaires::ajouterErreur('Erreur de connexion');
                 include PATH_VIEWS . 'v_erreurs.php';
                 include PATH_VIEWS . 'v_connexion.php';
-            }else{
+            } else {
                 $id = $user['id'];
                 $nom = $user['nom'];
                 $prenom = $user['prenom'];

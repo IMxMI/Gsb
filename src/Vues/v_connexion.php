@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Vue Connexion
  *
@@ -15,7 +14,6 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
-
 ?>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">

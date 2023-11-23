@@ -15,7 +15,6 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  * @example   /path/to/php.exe majGSB.php
  */
-
 $moisDebut = '202209';
 require './fonctions.php';
 

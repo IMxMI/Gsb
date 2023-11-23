@@ -454,6 +454,27 @@ class PdoGsb {
         }
         return $lesMois;
     }
+    
+    public function getLesMoisDisponiblesBis(): array {
+        $requetePrepare = $this->connexion->prepare(
+                'SELECT fichefrais.mois AS mois FROM fichefrais '
+                . 'ORDER BY fichefrais.mois desc'
+        );
+        //$requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $lesMois = array();
+        while ($laLigne = $requetePrepare->fetch()) {
+            $mois = $laLigne['mois'];
+            $numAnnee = substr($mois, 0, 4);
+            $numMois = substr($mois, 4, 2);
+            $lesMois[] = array(
+                'mois' => $mois,
+                'numAnnee' => $numAnnee,
+                'numMois' => $numMois
+            );
+        }
+        return $lesMois;
+    }
 
     /**
      * Retourne les informations d'une fiche de frais d'un visiteur pour un
@@ -507,15 +528,14 @@ class PdoGsb {
         $requetePrepare->execute();
     }
 
-
     public function getListeVisiteur(): array {
         $requetePrepare = $this->connexion->prepare(
-        'SELECT visiteur.id AS id, visiteur.nom AS nom, visiteur.prenom AS prenom FROM visiteur'
-        .'ORDER BY ID asc '
+                'SELECT visiteur.id AS id, visiteur.nom AS nom, visiteur.prenom AS prenom FROM visiteur '
+                . 'ORDER BY ID asc '
         );
         $requetePrepare->execute();
         $lesVisiteurs = array();
-        while ($laLigne = $requetePrepare->fetch()){
+        while ($laLigne = $requetePrepare->fetch()) {
             $id = $laLigne['id'];
             $nom = $laLigne['nom'];
             $prenom = $laLigne['prenom'];
@@ -527,21 +547,19 @@ class PdoGsb {
         }
         return $lesVisiteurs;
     }
-    
-        /**
+
+    /**
      * Retourne l'ensemble des fichesFrais validée.
      *
      * @return array
      */
-    public function getFicheFraisValid(): array|null
-    {
+    public function getFicheFraisValid(): array|null {
         $requetePrepare = $this->connexion->prepare(
-            "select fichefrais.idvisiteur, visiteur.nom, visiteur.prenom, fichefrais.mois, fichefrais.montantvalide "
-            . "from fichefrais inner join visiteur on fichefrais.idvisiteur = visiteur.id  "
-            . "WHERE fichefrais.idetat = 'VA'  "
+                "select fichefrais.idvisiteur, visiteur.nom, visiteur.prenom, fichefrais.mois, fichefrais.montantvalide "
+                . "from fichefrais inner join visiteur on fichefrais.idvisiteur = visiteur.id  "
+                . "WHERE fichefrais.idetat = 'VA'  "
         );
         $requetePrepare->execute();
         return $requetePrepare->fetchAll();
-
     }
 }
