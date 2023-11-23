@@ -15,5 +15,14 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 $testFiche = $pdo->getFicheFraisValid();
-
+foreach ($testFiche as $test) {
+    $ligneFraisHorsForfait = $pdo->getLesFraisHorsForfait($test['idvisiteur'], $test['mois']);
+    if(!empty($ligneFraisHorsForfait)) {
+        foreach ($ligneFraisHorsForfait as $totalHF) {
+            $a = 0;
+            $a += $totalHF;
+        }
+        $test['totalHorsFrais'] = $totalFraisHorsForfait['montant'];
+    }
+}
 include_once PATH_VIEWS . 'v_suiviFrais.php';
