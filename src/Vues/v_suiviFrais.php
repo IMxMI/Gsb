@@ -1,6 +1,6 @@
 <?php ?>
 <div class="panel panel-warning">
-    <div class="panel-heading">Liste des fiches de frais validées<button type="button" class="btn btn-secondary" style="float:inline-end">Secondary</button></div>
+    <div class="panel-heading">Liste des fiches de frais validées<button type="button" class="btn btn-secondary btn-sm btn-nav" style="float:inline-end; position: relative; top: -5px;">Tout sélectionner</button></div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -29,7 +29,7 @@
                     <td><?php
                         echo $test['montantvalide'] . '€';
                         ?></td>
-                    <td><center><input type="checkbox" idCheckBox="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>"></center></td>
+                    <td><center><input type="checkbox" name="checkbox" idCheckBox="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>"></center></td>
                 </tr>
             <?php };
             ?>
