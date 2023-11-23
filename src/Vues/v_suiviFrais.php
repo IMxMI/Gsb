@@ -1,6 +1,7 @@
 <?php ?>
+<script type="text/javascript" src="js/suiviFrais/tabSuivi.js"></script>
 <div class="panel panel-warning">
-    <div class="panel-heading">Liste des fiches de frais validées<button type="button" class="btn btn-secondary btn-sm btn-nav" style="float:inline-end; position: relative; top: -5px;">Tout sélectionner</button></div>
+    <div class="panel-heading"><span class="glyphicon glyphicon-bookmark"></span>  Liste des fiches de frais validées<button id="buttonTest" type="button" class="btn btn-secondary btn-sm btn-nav" style="float:inline-end; position: relative; top: -5px; width: 150px">Tout sélectionner</button></div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -10,7 +11,7 @@
                 <th>Total hors forfait</th>
                 <th>Montant validé</th>
                 <th><center>Mise en paiement</center></th>
-            </tr>
+        </tr>
         </thead>
         <tbody>
             <?php
@@ -29,10 +30,10 @@
                     <td><?php
                         echo $test['montantvalide'] . '€';
                         ?></td>
-                    <td><center><input type="checkbox" name="checkbox" idCheckBox="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>"></center></td>
-                </tr>
-            <?php };
-            ?>
+                    <td><center><input type="checkbox" name="checkbox" name="checkbox" idCheckBox="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>"></center></td>
+            </tr>
+        <?php };
+        ?>
         </tbody>
     </table>
 </div>
