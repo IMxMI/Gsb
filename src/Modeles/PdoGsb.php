@@ -176,6 +176,19 @@ class PdoGsb {
         return $lesLignes;
     }
 
+    public function getLesFraisHorsForfaitMontant($idVisiteur, $mois): array {
+        $requetePrepare = $this->connexion->prepare(
+                'SELECT SUM(montant) AS montantHorsForfait '
+                . 'FROM lignefraishorsforfait '
+                . 'WHERE idvisiteur = :unIdVisiteur AND mois = :unMois '
+                . 'GROUP BY idvisiteur, mois '
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetchAll(PDO::FETCH_COLUMN);
+    }
+
     /**
      * Retourne le nombre de justificatif d'un visiteur pour un mois donné
      *
@@ -454,7 +467,7 @@ class PdoGsb {
         }
         return $lesMois;
     }
-    
+
     public function getLesMoisDisponiblesBis(): array {
         $requetePrepare = $this->connexion->prepare(
                 'SELECT fichefrais.mois AS mois FROM fichefrais '

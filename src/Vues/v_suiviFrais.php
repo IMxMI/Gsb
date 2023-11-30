@@ -19,30 +19,30 @@
         </thead>
         <tbody>
             <?php
-            foreach ($testFiche as $test) {
+            foreach ($ficheFraisValid as $ficheFV) {
                 ?>
-                <tr idLigne="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>">
+                <tr idLigne="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>">
                     <td><?php
-                        echo $test['nom'] . ' ';
-                        echo $test['prenom'];
+                        echo $ficheFV['nom'] . ' ';
+                        echo $ficheFV['prenom'];
                         ?></td>
                     <td><?php
-                        echo $test['mois'];
+                        echo $ficheFV['mois'];
                         ?></td>
                     <td>A REMPLIR</td>
                     <td><?php
-                        if (isset($test['totalHorsFrais'])) {
-                            echo $test['totalHorsFrais'];
+                        if (isset($ficheFV['totalHorsFrais'])) {
+                            echo $ficheFV['totalHorsFrais'];
                         };
                         ?></td>
                     <td><?php
-                        if (isset($test['montantvalide'])) {
-                            echo $test['montantvalide'] . '€';
+                        if (isset($ficheFV['montantvalide'])) {
+                            echo $ficheFV['montantvalide'] . '€';
                         };
                         ?></td>
 
 
-                    <td><center><input type="checkbox" name="checkbox" idCheckBox="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>"></center></td>
+                    <td><center><input type="checkbox" name="checkbox" idCheckBox="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>"></center></td>
 
             </tr>
         <?php };
