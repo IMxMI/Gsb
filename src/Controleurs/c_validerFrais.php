@@ -20,21 +20,17 @@ $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $visiteurs = $pdo->getVisiteurs();
 switch ($action) {
     case 'selectionnerMoisVisiteur':
-        var_dump($visiteurs);
-        include PATH_VIEWS . "v_choixLeVisiteur.php";
-        include PATH_VIEWS . "v_FraisHorsForfaitCmpta.php";
-        break;
-    case 'validerfrais';
         $lesVisiteurs = $pdo->getListeVisiteur();
-        $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
-        //
-        //
-        //
         $lesCles = array_keys($lesVisiteurs);
         $visiteursASelectionner = $lesCles[0];
+        $lesMois = $pdo->getLesMoisDisponiblesBis();
         $lesClesBis = array_keys($lesMois);
         $moisASelectionner = $lesClesBis[0];
-       // include PATH_VIEWS . "v_choixLeVisiteur.php";
+        //var_dump($visiteurs);
+        include PATH_VIEWS . "v_choixLeVisiteur.php";
+        
         break;
+    
 }
+        
 

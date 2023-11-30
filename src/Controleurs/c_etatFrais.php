@@ -44,15 +44,5 @@ switch ($action) {
         $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
         include PATH_VIEWS . 'v_etatFrais.php';
         break;
-    //case 'validerfrais';
-    // $lesVisiteurs = $pdo->getListeVisiteur();
-    // $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
-    //
-    //
-    //
-    // $lesCles =array_keys($lesVisiteurs);
-    //     $visiteursASelectionner = $lesCles[0];
-    //   $lesClesBis = array_keys($lesMois);
-    // $moisASelectionner = $lesClesBis[0];
-    //   include PATH_VIEWS '';
+    
 }

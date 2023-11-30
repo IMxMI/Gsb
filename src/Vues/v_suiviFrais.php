@@ -36,7 +36,10 @@
                     <td><?php
                         echo $test['montantvalide'] . '€';
                         ?></td>
+
+
                     <td><center><input type="checkbox" name="checkbox" idCheckBox="<?php echo $test['idvisiteur'] . '-' . $test['mois'] ?>"></center></td>
+
             </tr>
         <?php };
         ?>
