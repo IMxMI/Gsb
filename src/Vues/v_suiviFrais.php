@@ -30,7 +30,9 @@
                         echo $test['mois'];
                         ?></td>
                     <td>A REMPLIR</td>
-                    <td>A REMPLIR</td>
+                    <td><?php
+                        echo $test['totalHorsFrais'];
+                        ?></td>
                     <td><?php
                         echo $test['montantvalide'] . '€';
                         ?></td>
