@@ -31,10 +31,14 @@
                         ?></td>
                     <td>A REMPLIR</td>
                     <td><?php
-                        echo $test['totalHorsFrais'];
+                        if (isset($test['totalHorsFrais'])) {
+                            echo $test['totalHorsFrais'];
+                        };
                         ?></td>
                     <td><?php
-                        echo $test['montantvalide'] . '€';
+                        if (isset($test['montantvalide'])) {
+                            echo $test['montantvalide'] . '€';
+                        };
                         ?></td>
 
 
