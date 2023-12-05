@@ -470,7 +470,7 @@ class PdoGsb {
 
     public function getLesMoisDisponiblesBis(): array {
         $requetePrepare = $this->connexion->prepare(
-                'SELECT fichefrais.mois AS mois FROM fichefrais '
+                'SELECT DISTINCT fichefrais.mois AS mois FROM fichefrais '
                 . 'ORDER BY fichefrais.mois desc'
         );
         //$requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);

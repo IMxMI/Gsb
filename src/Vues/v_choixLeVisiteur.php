@@ -1,7 +1,5 @@
-<?php ?>
 
 <div class="container mx-auto">
-    <br>
     <div class="col-md-4">
         <form action="index.php?uc=etatFrais&action=voirEtatFrais" 
               method="post" role="form">
@@ -27,6 +25,7 @@
                     }
                     ?>    </select>
             </div>
+        </form>
     </div>
     <div class="col-md-4">
         <form action="index.php?uc=etatFrais&action=voirEtatFrais" 
@@ -55,50 +54,46 @@
 
                 </select>
             </div>
+        </form>
     </div>
-
-</select>
-
-
-
-
 <br>
-
-    <h2>Valider la fiche de frais</h2>
-    <h3>Eléments forfaitisés</h3>
-    <form action="" method="get">
-        <div class="row">
-            <div class="form-group col-sm-3">
-                <label for="inputForfaitStage">Forfait Etape</label>
-                <input type="text" name="forfaitEtape" class="form-control" id="inputForfaitStage" 
-                       value="<?= $infoFraisForfait[0]['quantite'] ?? '0' ?>" 
-                       placeholder="<?= $infoFraisForfait[0]['quantite'] ?? '0' ?>">
-            </div>
+<br>
+<br>
+<h2>Valider la fiche de frais</h2>
+<h3>Eléments forfaitisés</h3>
+<form action="" method="get">
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="inputForfaitStage">Forfait Etape</label>
+            <input type="text" name="forfaitEtape" class="form-control" id="inputForfaitStage" 
+                   value="<?= $infoFraisForfait[0]['quantite'] ?? '0' ?>" 
+                   placeholder="<?= $infoFraisForfait[0]['quantite'] ?? '0' ?>">
         </div>
-        <div class="row">
-            <div class="form-group col-sm-3">
-                <label for="inputFraisKm">Frais Kilométrique</label>
-                <input type="text" name="forfaitEtape" class="form-control" id="inputFraisKm" 
-                       value="<?= $infoFraisForfait[1]['quantite'] ?? '0' ?>"
-                       placeholder="<?= $infoFraisForfait[1]['quantite'] ?? '0' ?>">
-            </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="inputFraisKm">Frais Kilométrique</label>
+            <input type="text" name="forfaitEtape" class="form-control" id="inputFraisKm" 
+                   value="<?= $infoFraisForfait[1]['quantite'] ?? '0' ?>"
+                   placeholder="<?= $infoFraisForfait[1]['quantite'] ?? '0' ?>">
         </div>
-        <div class="row">
-            <div class="form-group col-sm-3">
-                <label for="inputinputNuitHotel">Nuitée Hôtel</label>
-                <input type="text" name="nuitHotel" class="form-control" id="inputinputNuitHotel" 
-                       value="<?= $infoFraisForfait[2]['quantite'] ?? '0' ?>"
-                       placeholder="<?= $infoFraisForfait[2]['quantite'] ?? '0' ?>">
-            </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="inputinputNuitHotel">Nuitée Hôtel</label>
+            <input type="text" name="nuitHotel" class="form-control" id="inputinputNuitHotel" 
+                   value="<?= $infoFraisForfait[2]['quantite'] ?? '0' ?>"
+                   placeholder="<?= $infoFraisForfait[2]['quantite'] ?? '0' ?>">
         </div>
-        <div class="row">
-            <div class="form-group col-sm-3">
-                <label for="inputRepasResto">Repas Restaurant</label>
-                <input type="text" name="repasResto" class="form-control" id="inputRepasResto" 
-                       value="<?= $infoFraisForfait[3]['quantite'] ?? '0' ?>"
-                       placeholder="<?= $infoFraisForfait[3]['quantite'] ?? '0' ?>">
-            </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="inputRepasResto">Repas Restaurant</label>
+            <input type="text" name="repasResto" class="form-control" id="inputRepasResto" 
+                   value="<?= $infoFraisForfait[3]['quantite'] ?? '0' ?>"
+                   placeholder="<?= $infoFraisForfait[3]['quantite'] ?? '0' ?>">
         </div>
+    </div>
 
 </div>
 <button type="submit" class="btn btn-success">Corriger</button>
@@ -122,24 +117,23 @@
                     <th class="date"></th>
                     <th class="libelle"></th>  
                     <th class="montant"></th>
-
-                    <th <button type="submit" class="btn btn-success">Corriger</button>
-                        <button type="reset" class="btn btn-danger">Réinitialiser</button>
+                    <th><button type="submit" class="btn btn-success">Corriger</button></th>
+                    <th> <button type="reset" class="btn btn-danger">Réinitialiser</button>
                     </th> 
                 </tr>
                 <tr>
                     <th class="date"></th>
                     <th class="libelle"></th>  
                     <th class="montant"></th>  
-                    <th <button type="submit" class="btn btn-success">Corriger</button>
-                        <button type="reset" class="btn btn-danger">Réinitialiser</button>
+                    <th><button type="submit" class="btn btn-success">Corriger</button></th>
+                    <th> <button type="reset" class="btn btn-danger">Réinitialiser</button>
                     </th> 
                 </tr>
             </thead>  
-            <tbody> </tbody>
+           
         </table>
     </div>
-        
+
 
     <br>
     <div class="row">
