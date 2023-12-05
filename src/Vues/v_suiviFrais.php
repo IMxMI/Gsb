@@ -29,10 +29,14 @@
                     <td><?php
                         echo $ficheFV['mois'];
                         ?></td>
-                    <td>A REMPLIR</td>
                     <td><?php
-                        if (isset($ficheFV['totalHorsFrais'])) {
-                            echo $ficheFV['totalHorsFrais'];
+                        if (isset($ficheFV['montantFrais'])) {
+                            echo $ficheFV['montantFrais'];
+                        };
+                        ?></td><td>
+                        <?php
+                        if (isset($ficheFV['montantHorsFrais'])) {
+                            echo $ficheFV['montantHorsFrais'];
                         };
                         ?></td>
                     <td><?php

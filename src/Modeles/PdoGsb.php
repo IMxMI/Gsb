@@ -189,6 +189,21 @@ class PdoGsb {
         return $requetePrepare->fetchAll(PDO::FETCH_COLUMN);
     }
 
+    public function getMontantFraisForfait($idVisiteur, $mois): array {
+        $requetePrepare = $this->connexion->prepare(
+                'SELECT sum(lignefraisforfait.quantite * fraisforfait.montant) '
+                . 'AS montantFraisForfait FROM lignefraisforfait '
+                . 'INNER JOIN fraisforfait '
+                . 'ON lignefraisforfait.idfraisforfait = fraisforfait.id '
+                . 'WHERE idvisiteur = :unIdVisiteur AND mois = :unMois '
+                . 'GROUP BY idvisiteur, mois '
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetchAll(PDO::FETCH_COLUMN);
+    }
+
     /**
      * Retourne le nombre de justificatif d'un visiteur pour un mois donné
      *
