@@ -31,12 +31,13 @@
                         ?></td>
                     <td><?php
                         if (isset($ficheFV['montantFrais'])) {
-                            echo $ficheFV['montantFrais'];
+                            echo $ficheFV['montantFrais'] . "€";
                         };
-                        ?></td><td>
+                        ?></td>
+                    <td>
                         <?php
                         if (isset($ficheFV['montantHorsFrais'])) {
-                            echo $ficheFV['montantHorsFrais'];
+                            echo $ficheFV['montantHorsFrais'] . "€";
                         };
                         ?></td>
                     <td><?php
