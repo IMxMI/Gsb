@@ -28,6 +28,15 @@ switch ($action) {
 
         break;
 
+    case 'miseEnPaiement':
+        $tableauFiches = array_map('htmlspecialchars', $_POST['fiches']);
+        foreach ($tableauFiches as $fiche) {
+            $fiche['idvisiteur'],$fiche['mois']
+        }
+        include_once PATH_VIEWS . 'flashMessage.php';
+
+        break;
+
     default:
         break;
 }
