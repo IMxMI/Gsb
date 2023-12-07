@@ -23,7 +23,7 @@
             <?php
             foreach ($ficheFraisValid as $ficheFV) {
                 ?>
-                <tr idLigne="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>">
+                <tr idLigneVisiteur="<?php echo $ficheFV['idvisiteur']?>" idLigneMois="<?php echo $ficheFV['mois' ] ?>">
                     <td><?php
                         echo $ficheFV['nom'] . ' ';
                         echo $ficheFV['prenom'];
