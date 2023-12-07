@@ -85,7 +85,7 @@
                                     <li class=" <?php if ($uc == 'suiviFicheFrais') {
             echo $active;
         } ?>">
-                                        <a href="index.php?uc=suiviFicheFrais&action=actionADefinir">
+                                        <a href="index.php?uc=suiviFicheFrais&action=suivieFrais">
                                             <span class="glyphicon glyphicon-euro"></span>
                                             Suivre le paiement des fiches de frais
                                         </a>
