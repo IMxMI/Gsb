@@ -1,5 +1,7 @@
 <?php ?>
 <script type="text/javascript" src="js/suiviFrais/tabSuivi.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<button></button>
 <div class="panel panel-warning">
     <div class="panel-heading">
         <span class="glyphicon glyphicon-bookmark"></span>  Liste des fiches de frais validées
