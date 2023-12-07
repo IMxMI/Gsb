@@ -103,8 +103,8 @@
 
 <hr>
 <div class="row">
-    <div class="panel panel-infocmp">
-        <div class="panel-heading panel-heading-comptable">Descriptif des éléments hors forfait</div>
+    <div class="panel panel-info">
+        <div class="panel-heading panel-heading-comptable panel-heading-elementHorsForfait">Descriptif des éléments hors forfait</div>
         <table class="table table-bordered table-responsive">
             <thead>
                 <tr>

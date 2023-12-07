@@ -68,6 +68,9 @@ border: 1px solid #FF8800;
     border: 1px solid #FF8800;
 }
 .panel-heading{
-        color: white!important
+        color: black!important
 
+}
+.panel-heading-elementHorsForfait {
+    color: white!important;
 }
