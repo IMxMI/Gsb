@@ -4,7 +4,7 @@ function creationXHR() {
         resultat = new XMLHttpRequest();
     } catch (Erreur) {
         try {
-            resultat = new ActiveXObject("Msxm12.XMLHTTP");
+            resultat = new ActiveXObject("Msxml2.XMLHTTP");
         } catch (Erreur) {
             try {
                 resultat = new ActiveXObject("Microsoft.XMLHTTP");
