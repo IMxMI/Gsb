@@ -1,6 +1,6 @@
 <?php ?>
 <script type="text/javascript" src="js/suiviFrais/tabSuivi.js"></script>
-<<script type="text/javascript" src="js/creationXHR.js"></script>
+<script type="text/javascript" src="js/creationXHR.js"></script>
 <button></button>
 <div class="panel panel-warning">
     <div class="panel-heading">
