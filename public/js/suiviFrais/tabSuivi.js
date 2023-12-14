@@ -43,8 +43,19 @@ document.addEventListener("DOMContentLoaded", function () {
         for (var i = 0; i < elementsSelection.length; i++) {
             var idVisiteur = elementsSelection[i].getAttribute("idlignevisiteur");
             var idMois = elementsSelection[i].getAttribute("idlignemois");
-            var ligne = [idVisiteur, idMois];
+            var ligne = {
+                idVisiteur: idVisiteur,
+                idMois: idMois
+            };
+            elementsSelection.di
             visiteurs.push(ligne);
         }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/index.php?uc=suiviFicheFrais&action=miseEnPaiement", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        var parametres = JSON.stringify(visiteurs);
+        xhr.send(parametres);
     }
+
 });
