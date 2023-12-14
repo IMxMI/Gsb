@@ -1,7 +1,7 @@
 <?php ?>
 <script type="text/javascript" src="js/suiviFrais/tabSuivi.js"></script>
 <script type="text/javascript" src="js/creationXHR.js"></script>
-<button></button>
+<button id="sendData"> SEND </button>
 <div class="panel panel-warning">
     <div class="panel-heading">
         <span class="glyphicon glyphicon-bookmark"></span>  Liste des fiches de frais validées
