@@ -590,4 +590,15 @@ class PdoGsb {
         $requetePrepare->execute();
         return $requetePrepare->fetchAll();
     }
+
+    public function updateFicheFraisValid($idvisiteur, $mois) {
+        $requetePrepare = $this->connexion->prepare(
+                "update fichefrais"
+                . "set idetat = 'MP'"
+                . " where fichefrais.idvisiteur = :unIdVisiteur and fichefrais.mois = :unMois;  "
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
 }
