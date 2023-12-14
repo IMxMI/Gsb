@@ -38,29 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function miseEnPaiement() {
-
-        // Sélection des éléments ayant la classe "selection"
         var elementsSelection = document.getElementsByClassName("selection");
-
-// Initialisation des tableaux pour stocker les idvisiteur et idmois
-        var idVisiteurs = [];
-        var idMois = [];
-
-// Parcours des éléments et récupération des idvisiteur et idmois
+        var visiteurs = [];
         for (var i = 0; i < elementsSelection.length; i++) {
             var idVisiteur = elementsSelection[i].getAttribute("idlignevisiteur");
-            console.log(idVisiteur);
             var idMois = elementsSelection[i].getAttribute("idlignemois");
-            console.log(idMois);
-
-            // Ajout des valeurs aux tableaux
-            idVisiteurs.push(idVisiteur);
-            idMois.push(idMois);
+            var ligne = [idVisiteur, idMois];
+            visiteurs.push(ligne);
         }
-
-// Affichage des idvisiteur et idmois récupérés
-        console.log("idvisiteur :", idVisiteurs);
-        console.log("idmois :", idMois);
-
     }
 });
