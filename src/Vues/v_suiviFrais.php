@@ -1,5 +1,6 @@
 <?php ?>
 <script type="text/javascript" src="js/suiviFrais/tabSuivi.js"></script>
+<<script type="text/javascript" src="js/creationXHR.js"></script>
 <button></button>
 <div class="panel panel-warning">
     <div class="panel-heading">
@@ -22,7 +23,7 @@
             <?php
             foreach ($ficheFraisValid as $ficheFV) {
                 ?>
-                <tr idLigneVisiteur="<?php echo $ficheFV['idvisiteur']?>" idLigneMois="<?php echo $ficheFV['mois' ] ?>">
+                <tr idLigneVisiteur="<?php echo $ficheFV['idvisiteur'] ?>" idLigneMois="<?php echo $ficheFV['mois'] ?>">
                     <td><?php
                         echo $ficheFV['nom'] . ' ';
                         echo $ficheFV['prenom'];
