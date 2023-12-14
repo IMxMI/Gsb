@@ -29,12 +29,14 @@ switch ($action) {
         break;
 
     case 'miseEnPaiement':
-        $tableauFiches = array_map('htmlspecialchars', $_POST['fiches']);
-        foreach ($tableauFiches as $fiche) {
-            $fiche['idvisiteur'],$fiche['mois']
-        }
-        include_once PATH_VIEWS . 'flashMessage.php';
+        $inputJSON = file_get_contents('php://input');
 
+        $data = json_decode($inputJSON, true);
+        
+        foreach ($data as $fiche) {
+            $pdo->updateFicheFraisValid($fiche['idvisiteur'], $fiche['mois']);
+        }
+        return $jsonResponse = json_encode("Ok");
         break;
 
     default:
