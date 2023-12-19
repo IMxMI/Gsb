@@ -58,19 +58,35 @@ code {
 
 .panel-infocmp{
     border-color: #FF8800 !important;
-    
+
 }
 .table-bordered{
-border: 1px solid #FF8800;
+    border: 1px solid #FF8800;
 }
 
 .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
     border: 1px solid #FF8800;
 }
 .panel-heading{
-        color: black!important
+    color: black!important
 
 }
 .panel-heading-elementHorsForfait {
     color: white!important;
 }
+
+.sticky-bottom {
+    position: fixed;
+    bottom: 20px; /* Ajustez au besoin */
+    right: 20px; /* Ajustez au besoin */
+    z-index: 1000; /* Assurez-vous que le bouton reste au-dessus des autres éléments */
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Définit la largeur sur 100% pour centrer horizontalement */
+}
+
+.sticky-bottom button {
+    /* Pour centrer verticalement le bouton */
+    align-self: center;
+}
+
