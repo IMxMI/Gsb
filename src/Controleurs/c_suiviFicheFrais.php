@@ -30,15 +30,20 @@ switch ($action) {
 
     case 'miseEnPaiement':
         $inputJSON = file_get_contents('php://input');
-
         $data = json_decode($inputJSON, true);
-        
-        foreach ($data as $fiche) {
-            $pdo->updateFicheFraisValid($fiche['idvisiteur'], $fiche['mois']);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($data && is_array($data)) {
+                // Affichage des données reçues
+                foreach ($data as $test) {
+                    echo "idVisiteur: " . $test['idVisiteur'] . "<br>";
+                    echo "idMois: " . $test['idMois'] . "<br>";
+                }
+            }
         }
-        return $jsonResponse = json_encode("Ok");
         break;
 
     default:
         break;
 }
+    

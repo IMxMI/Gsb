@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 idVisiteur: idVisiteur,
                 idMois: idMois
             };
-            elementsSelection.di
+            elementsSelection[i].style.display = "none";
             visiteurs.push(ligne);
         }
 
@@ -55,7 +55,32 @@ document.addEventListener("DOMContentLoaded", function () {
         xhr.open("POST", "/index.php?uc=suiviFicheFrais&action=miseEnPaiement", true);
         xhr.setRequestHeader("Content-Type", "application/json");
         var parametres = JSON.stringify(visiteurs);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Afficher la réponse du serveur dans la console
+                    console.log("Réponse du serveur :", xhr.responseText);
+
+                    // Essayer de parser la réponse JSON
+                    try {
+                        var reponseServeur = JSON.parse(xhr.responseText);
+                        console.log("Réponse parsée :", reponseServeur);
+
+                        // Faire quelque chose avec la réponse parsée
+                        alert(reponseServeur.message);
+                    } catch (e) {
+                        console.error('Erreur lors de la conversion JSON :', e);
+                    }
+                } else {
+                    console.error('Erreur lors de la requête.');
+                }
+            }
+        };
+
+
         xhr.send(parametres);
     }
+
 
 });
