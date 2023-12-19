@@ -37,6 +37,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Sélection de toutes les cases à cocher dans le tableau
+// Sélection de toutes les cases à cocher avec la classe "Checkbox"
+    var checkboxes = document.querySelectorAll(".Checkbox");
+
+// Ajout d'un écouteur d'événement 'change' à chaque case à cocher
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", function () {
+            // Vérification si la checkbox est cochée
+            if (this.checked) {
+                // Accès à la ligne parente (le <tr>) de la checkbox
+                var row = this.closest("tr");
+
+                // Ajout de la classe à la ligne parente
+                row.classList.add("selection");
+            } else {
+                // Accès à la ligne parente (le <tr>) de la checkbox
+                var row = this.closest("tr");
+
+                // Suppression de la classe de la ligne parente
+                row.classList.remove("selection");
+            }
+        });
+    });
+
+
+
     function miseEnPaiement() {
         var elementsSelection = document.getElementsByClassName("selection");
         var visiteurs = [];

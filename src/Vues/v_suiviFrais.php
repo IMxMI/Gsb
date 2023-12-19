@@ -48,7 +48,7 @@
                         ?></td>
 
 
-                    <td><center><input type="checkbox" name="checkbox" idCheckBox="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>"></center></td>
+                    <td><center><input type="checkbox" name="checkbox" class="Checkbox" idCheckBox="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>"></center></td>
 
             </tr>
         <?php };
