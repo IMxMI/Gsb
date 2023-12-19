@@ -11,11 +11,11 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Visiteurs</th>
+                <th>Visiteurs <span class="glyphicon glyphicon-user"></span></th>
                 <th>Mois</th>
-                <th>Total forfait</th>
-                <th>Total hors forfait</th>
-                <th>Montant validé</th>
+                <th>Total forfait <span class="glyphicon glyphicon-euro"></span></th>
+                <th>Total hors forfait<span class="glyphicon glyphicon-euro"></span></th>
+                <th>Montant validé<span class="glyphicon glyphicon-euro"></span></th>
                 <th><center>Mise en paiement</center></th>
         </tr>
         </thead>
