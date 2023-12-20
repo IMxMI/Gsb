@@ -30,6 +30,7 @@ switch ($action) {
 
         //var_dump($nbJustificatifs);
         include PATH_VIEWS . "v_choixLeVisiteur.php";
+        include PATH_VIEWS . "v_elementsForfaitises.php";
 
         break;
 }
