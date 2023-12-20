@@ -12,7 +12,7 @@
 </div>
 <div class="row">
     <div class="form-group col-sm-3">
-        <label for="inputFraisKm">Frais Kilométrique</label>
+        <label for="inputFraisKm">Frais bonjour Kilométrique</label>
         <input type="text" name="forfaitEtape" class="form-control" id="inputFraisKm" 
                value="<?= $infoFraisForfait[1]['quantite'] ?? '0' ?>"
                placeholder="<?= $infoFraisForfait[1]['quantite'] ?? '0' ?>">
@@ -82,16 +82,12 @@
 
     <br>
     <div class="row">
-        <div class="form-group col-sm-3">
-            <label for="inputForfaitStage">Nombre de justificatifs : </label>
-            <input type="text" name="Nombredejustificatifs" class="form-control" id="inputForfaitStage"                  
+        <div class="form-group">
+            <label for="">Nombre de justificatifs : </label>
+            <input type="text" id="nbJustificatifs" name="nbJustificatifs" class="form-control"
                    </div>
+
+            <button class="btn btn-success" type="submit">Valider</button>
+            <button class="btn btn-danger" type="reset">Rénisialiser</button>
+            </form>
         </div>
-        <br>
-        <button class="btn btn-success" type="submit">Valider</button>
-        <button class="btn btn-danger" type="reset">Rénisialiser</button>
-
-
-
-    </div>
-</div>

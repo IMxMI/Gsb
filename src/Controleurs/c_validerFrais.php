@@ -17,20 +17,29 @@
 use Outils\Utilitaires;
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$visiteurs = $pdo->getVisiteurs();
+$lesVisiteurs = $pdo->getVisiteurs();
+//include PATH_VIEWS . "v_choixLeVisiteur.php";
 switch ($action) {
     case 'selectionnerMoisVisiteur':
-        $lesVisiteurs = $pdo->getListeVisiteur();
-        $lesCles = array_keys($lesVisiteurs);
-        $visiteursASelectionner = $lesCles[0];
-        $lesMois = $pdo->getLesMoisDisponiblesBis();
-        $lesClesBis = array_keys($lesMois);
-        $moisASelectionner = $lesClesBis[0];
-        
-
+        $_SESSION['leMois'] = filter_input(INPUT_POST, 'leMois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $_SESSION['leVisiteurId'] = filter_input(INPUT_POST, 'leVisiteur', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ($_SESSION['leMois'] == 'none' || $_SESSION['leVisiteurId'] == 'none') {
+            break;
+        } elseif ($pdo->estPremierFraisMois($_SESSION['leVisiteurId'], $_SESSION['leMois'])) {
+            $pdo->creeNouvellesLignesFrais($_SESSION['leVisiteurId'], $_SESSION['leMois']);
+        }
+        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($_SESSION['leVisiteurId'], $_SESSION['leMois']);
+        $lesFraisForfait = $pdo->getLesFraisForfait($_SESSION['leVisiteurId'], $_SESSION['leMois']);
+        $nbJustificatifs = $pdo->getNbjustificatifs($_SESSION['leVisiteurId'], $_SESSION['leMois']);
+       //include PATH_VIEWS . "v_elementsForfaitises.php";
+        break;
+//        $lesVisiteurs = $pdo->getListeVisiteur();
+//        $lesCles = array_keys($lesVisiteurs);
+//        $visiteursASelectionner = $lesCles[0];
+//        $lesMois = $pdo->getLesMoisDisponiblesBis();
+//        $lesClesBis = array_keys($lesMois);
+//        $moisASelectionner = $lesClesBis[0];
         //var_dump($nbJustificatifs);
-        include PATH_VIEWS . "v_choixLeVisiteur.php";
-        include PATH_VIEWS . "v_elementsForfaitises.php";
 
         break;
 }
