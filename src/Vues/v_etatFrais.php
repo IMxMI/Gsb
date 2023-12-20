@@ -75,4 +75,3 @@ foreach ($lesFraisForfait as $unFraisForfait) {
         ?>
     </table>
 </div>
-<?php echo $_SESSION['metier']; ?>

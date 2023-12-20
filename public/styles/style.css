@@ -90,3 +90,7 @@ code {
     align-self: center;
 }
 
+.panel-info-comptable {
+    border-color: #FF8800 !important;
+
+}

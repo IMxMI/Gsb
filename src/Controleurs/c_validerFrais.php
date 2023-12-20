@@ -26,11 +26,12 @@ switch ($action) {
         $lesMois = $pdo->getLesMoisDisponiblesBis();
         $lesClesBis = array_keys($lesMois);
         $moisASelectionner = $lesClesBis[0];
-        //var_dump($visiteurs);
-        include PATH_VIEWS . "v_choixLeVisiteur.php";
         
+
+        //var_dump($nbJustificatifs);
+        include PATH_VIEWS . "v_choixLeVisiteur.php";
+
         break;
-    
 }
         
 
