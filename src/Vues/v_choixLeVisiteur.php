@@ -57,10 +57,16 @@
         </form>
     </div>
 </div>
-<div class="col-md-4">
     
+<div class="col-md-4">
+    <br>
  <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
             <input id="annuler" type="reset" value="Effacer" class="btn btn-danger" 
-                   role="button"></div>
+                   role="button">
+</div>
 
+    <br>
+    <br>
+    <br>
+    
