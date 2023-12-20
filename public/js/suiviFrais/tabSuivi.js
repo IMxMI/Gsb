@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var sendData = document.getElementById("sendData");
     sendData.addEventListener("click", miseEnPaiement);
+    sendData.style.display = "none";
+
+    var cpt = 0;
 
     function buttonControl() {
         var button = document.getElementById('buttonTest');
@@ -25,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (ele[i].type === 'checkbox')
                 ele[i].checked = true;
             ele[i].parentNode.parentNode.parentNode.classList.add("selection");
+            cpt++;
+            sendData.style.display = "block";
         }
     }
 
@@ -34,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (ele[i].type === 'checkbox')
                 ele[i].checked = false;
             ele[i].parentNode.parentNode.parentNode.classList.remove("selection");
+            cpt--;
+            sendData.style.display = "none";
         }
     }
 
@@ -51,12 +58,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Ajout de la classe à la ligne parente
                 row.classList.add("selection");
+                cpt++;
+                sendData.style.display = "block";
             } else {
                 // Accès à la ligne parente (le <tr>) de la checkbox
                 var row = this.closest("tr");
 
                 // Suppression de la classe de la ligne parente
                 row.classList.remove("selection");
+                cpt--;
+                if (cpt <= 0) {
+                    sendData.style.display = "none";
+                }
             }
         });
     });
