@@ -30,15 +30,10 @@ switch ($action) {
         }
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($_SESSION['leVisiteurId'], $_SESSION['leMois']);
         $lesFraisForfait = $pdo->getLesFraisForfait($_SESSION['leVisiteurId'], $_SESSION['leMois']);
-       // $nbJustificatifs = $pdo->getNbjustificatifs($_SESSION['leVisiteurId'], $_SESSION['leMois']);
-       //include PATH_VIEWS . "v_elementsForfaitises.php";
+        // $nbJustificatifs = $pdo->getNbjustificatifs($_SESSION['leVisiteurId'], $_SESSION['leMois']);
+        include PATH_VIEWS . "v_elementsForfaitises.php";
         break;
-//        $lesVisiteurs = $pdo->getListeVisiteur();
-//        $lesCles = array_keys($lesVisiteurs);
-//        $visiteursASelectionner = $lesCles[0];
-//        $lesMois = $pdo->getLesMoisDisponiblesBis();
-//        $lesClesBis = array_keys($lesMois);
-//        $moisASelectionner = $lesClesBis[0];
+
         //var_dump($nbJustificatifs);
 
         break;

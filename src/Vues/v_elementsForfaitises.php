@@ -12,7 +12,7 @@
 </div>
 <div class="row">
     <div class="form-group col-sm-3">
-        <label for="inputFraisKm">Frais bonjour Kilométrique</label>
+        <label for="inputFraisKm">Frais Kilométrique</label>
         <input type="text" name="forfaitEtape" class="form-control" id="inputFraisKm" 
                value="<?= $infoFraisForfait[1]['quantite'] ?? '0' ?>"
                placeholder="<?= $infoFraisForfait[1]['quantite'] ?? '0' ?>">
