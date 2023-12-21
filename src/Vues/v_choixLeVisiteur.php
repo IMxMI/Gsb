@@ -1,5 +1,5 @@
+
 <div class="row">
-    <div class="container mx-auto">
         <div class="col-md-4">
             <form action="index.php?uc=validerFrais&action=selectionnerMoisVisiteur" 
                   method="post" role="form">
@@ -12,12 +12,11 @@
                             $id = $unVisiteur['id'];
                             $nom = $unVisiteur['nom'];
                             $prenom = $unVisiteur['prenom'];
-                            if ($id == $visiteursASelectionner) {
                                 ?>
                                 <option value="<?php echo $id ?>">
                                     <?php echo $nom . ' ' . $prenom ?> </option>
                                 <?php
-                            }
+                        }
                             ?>    
                         </select>
                     </div>
