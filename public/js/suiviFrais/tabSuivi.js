@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /*
+     * Selectionne l'ensemble des checkbox non selectionner
+     * et rajoute la classe selection a chaque ligne des cases nouvellement cocher.
+     */
     function selects() {
         var ele = document.getElementsByName('checkbox');
         for (var i = 0; i < ele.length; i++) {
@@ -33,6 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /*
+     * Déselectionne l'ensemble des checkbox non selectionner
+     * et enleve la classe selection a chaque ligne des cases nouvellement déselectionner.
+     */
     function deSelect() {
         var ele = document.getElementsByName('checkbox');
         for (var i = 0; i < ele.length; i++) {
