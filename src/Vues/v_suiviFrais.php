@@ -56,6 +56,7 @@
     </table>
 </div>
 
-<div class="sticky-bottom">
-    <button class="btn btn-warning btn-lg" id="sendData">Send</button>
+
+<div class="card">
+    <button class="btn" id="sendData">Send</button>
 </div>
