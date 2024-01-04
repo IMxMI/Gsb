@@ -344,7 +344,7 @@ class PdoGsb {
      *
      * @return le mois sous la forme aaaamm
      */
-    public function dernierMoisSaisi($idVisiteur): string {
+    public function dernierMoisSaisi($idVisiteur): ?string {
         $requetePrepare = $this->connexion->prepare(
                 'SELECT MAX(mois) as dernierMois '
                 . 'FROM fichefrais '
@@ -370,7 +370,7 @@ class PdoGsb {
      *
      * @return null
      */
-    public function creeNouvellesLignesFrais($idVisiteur, $mois): void {
+    public function creeNouvellesLignesFrais($idVisiteur, $mois): void{
         $dernierMois = $this->dernierMoisSaisi($idVisiteur);
         $laDerniereFiche = $this->getLesInfosFicheFrais($idVisiteur, $dernierMois);
         if ($laDerniereFiche['idEtat'] == 'CR') {
@@ -517,8 +517,8 @@ class PdoGsb {
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
-        $laLigne = $requetePrepare->fetch();
-        return $laLigne;
+        $lesLigne = $requetePrepare->fetchAll(PDO::FETCH_ASSOC);
+        return $lesLigne;
     }
 
     /**
@@ -579,7 +579,7 @@ class PdoGsb {
         return $requetePrepare->fetchAll();
     }
 
-    public function updateFicheFraisValid($idvisiteur, $mois) {
+    public function updateFicheFraisValid($idVisiteur, $mois) {
         $requetePrepare = $this->connexion->prepare(
                 "update fichefrais"
                 . "set idetat = 'MP'"
@@ -590,5 +590,21 @@ class PdoGsb {
         $requetePrepare->execute();
     }
 
-    
+    // retourne le nombre de justificatifs d'un visiteur pour un certain mois
+
+    public function getNbJustificatifs($idVisiteur, $mois): int {
+        $requetePrepare = $this->connexion->prepare(
+                'SELECT fichefrais.nbjustificatifs as nb FROM fichefrais '
+                . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
+                . 'AND fichefrais.mois = :unMois'
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $laLigne = $requetePrepare->fetch();
+        return $laLigne['nb'];
+    }
+
+  
+
 }
