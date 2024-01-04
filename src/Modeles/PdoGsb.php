@@ -370,7 +370,7 @@ class PdoGsb {
      *
      * @return null
      */
-    public function creeNouvellesLignesFrais($idVisiteur, $mois): void {
+    public function creeNouvellesLignesFrais($idVisiteur, $mois): void{
         $dernierMois = $this->dernierMoisSaisi($idVisiteur);
         $laDerniereFiche = $this->getLesInfosFicheFrais($idVisiteur, $dernierMois);
         if ($laDerniereFiche['idEtat'] == 'CR') {
@@ -517,8 +517,8 @@ class PdoGsb {
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
-        $laLigne = $requetePrepare->fetch();
-        return $laLigne;
+        $lesLigne = $requetePrepare->fetchAll(PDO::FETCH_ASSOC);
+        return $lesLigne;
     }
 
     /**
