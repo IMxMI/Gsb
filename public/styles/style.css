@@ -75,27 +75,31 @@ code {
     color: white!important;
 }
 
-.sticky-bottom {
-    position: fixed;
-    bottom: 20px; /* Ajustez au besoin */
-    right: 20px; /* Ajustez au besoin */
-    z-index: 1000; /* Assurez-vous que le bouton reste au-dessus des autres éléments */
-    display: flex;
-    justify-content: center;
-    width: 100%; /* Définit la largeur sur 100% pour centrer horizontalement */
-}
-
-.sticky-bottom button {
-    /* Pour centrer verticalement le bouton */
-    align-self: center;
-    opacity: 0.33!important;
-}
-
-.sticky-bottom #sendData {
-    background-color: rgba(255, 165, 0, 0.5)!important; /* Couleur de fond semi-transparente */
-}
-
 .panel-info-comptable {
     border-color: #FF8800 !important;
 
+}
+
+.card {
+    width: 250px;
+    border-width: medium;
+    border-color:#FF8800;
+    position: fixed;
+    right: 100px;
+    top: 307px;
+    height: fit-content;
+    border-radius: 10px;
+}
+
+.card-btn {
+    display: grid;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btn-MP {
+    position: relative;
+    top: -15px;
+    width: 230px;
+    margin-top: 5px;
 }

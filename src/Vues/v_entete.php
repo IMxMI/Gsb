@@ -48,52 +48,64 @@
                         </div>
                         <div class="col-md-8">
                             <ul class="nav nav-pills pull-right <?php if ($_SESSION['metier'] == 'comptable') { ?>comptable<?php } ?>" role="tablist">
-                                <li class="<?php if ($uc == 'accueil' || !$uc) {
-                echo $active;
-            } ?>">
+                                <li class="<?php
+                                if ($uc == 'accueil' || !$uc) {
+                                    echo $active;
+                                }
+                                ?>">
                                     <a href="index.php">
                                         <span class="glyphicon glyphicon-home"></span>
                                         Accueil
                                     </a>
                                 </li>
-    <?php if ($_SESSION['metier'] == 'visiteur') { ?>
-                                    <li class="<?php if ($uc == 'gererFrais') {
-            echo $active;
-        } ?>">
+                                <?php if ($_SESSION['metier'] == 'visiteur') { ?>
+                                    <li class="<?php
+                            if ($uc == 'gererFrais') {
+                                echo $active;
+                            }
+                            ?>">
                                         <a href="index.php?uc=gererFrais&action=saisirFrais">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                             Renseigner la fiche de frais
                                         </a>
                                     </li>
-                                    <li class="<?php if ($uc == 'etatFrais') {
-            echo $active;
-        } ?>">
+                                    <li class="<?php
+                            if ($uc == 'etatFrais') {
+                                echo $active;
+                            }
+                            ?>">
                                         <a href="index.php?uc=etatFrais&action=selectionnerMois">
                                             <span class="glyphicon glyphicon-list-alt"></span>
                                             Afficher mes fiches de frais
                                         </a>
                                     </li>
     <?php } elseif ($_SESSION['metier'] == 'comptable') { ?>
-                                    <li class="<?php if ($uc == 'validerFrais') {
+                                    <li class="<?php
+        if ($uc == 'validerFrais') {
             echo $active;
-        } ?>">
+        }
+        ?>">
                                         <a href="index.php?uc=validerFrais&action=selectionnerMoisVisiteur">
                                             <span class="glyphicon glyphicon-ok"></span>
                                             Valider les fiches de frais
                                         </a>
                                     </li>
-                                    <li class=" <?php if ($uc == 'suiviFicheFrais') {
-            echo $active;
-        } ?>">
+                                    <li class=" <?php
+                            if ($uc == 'suiviFicheFrais') {
+                                echo $active;
+                            }
+        ?>">
                                         <a href="index.php?uc=suiviFicheFrais&action=suivieFrais">
                                             <span class="glyphicon glyphicon-euro"></span>
                                             Suivre le paiement des fiches de frais
                                         </a>
                                     </li>
-                <?php } ?>
-                                <li class="<?php if ($uc == 'deconnexion') {
-                    echo $active;
-                } ?>">
+    <?php } ?>
+                                <li class="<?php
+    if ($uc == 'deconnexion') {
+        echo $active;
+    }
+    ?>">
                                     <a href="index.php?uc=deconnexion&action=demandeDeconnexion">
                                         <span class="glyphicon glyphicon-log-out"></span>
                                         Déconnexion
@@ -112,3 +124,5 @@
                 </h1>
     <?php
 }
+?>
+        </div>
