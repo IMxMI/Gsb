@@ -23,7 +23,9 @@ switch ($action) {
             $montantFraisForfait = $pdo->getMontantFraisForfait($ficheFV['idvisiteur'], $ficheFV['mois']);
             $ficheFV['montantHorsFrais'] = $montantTotalHorsForfait[0];
             $ficheFV['montantFrais'] = $montantFraisForfait[0];
+            
         }
+        $cptFicheFV = count($ficheFraisValid);
         include_once PATH_VIEWS . 'v_suiviFrais.php';
 
         break;

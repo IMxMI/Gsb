@@ -63,6 +63,8 @@
         <button class=" btn-MP btn btn-secondary btn-sm btn-nav" id="sendData">Send</button>
     </div>
     <div class="card-info">
-        <p>Aucun éléments sélectionner ...</p>
+        <p>Il y a <?php if(isset($cptFicheFV)){
+            echo $cptFicheFV ;
+        } ?> fiches de frais.</p>
     </div>
 </div>
