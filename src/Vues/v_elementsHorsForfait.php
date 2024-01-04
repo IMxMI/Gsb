@@ -1,8 +1,13 @@
+<br><!-- comment -->
+<br>
+
 <div class="row">
+        <div class="col-md-8">
+
     <div class="panel panel-info">
         <div class="panel-heading">Descriptif des éléments hors forfait</div>
         <form id="validationForm" method="post" action="index.php?uc=validerfrais&action=majHorsFraisForfait" role="form">
-            <table class="table table-bordered table-responsive">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th class="date">Date</th>
@@ -34,7 +39,12 @@
             </table>
         </form>
     </div>
-
+        </div>
+    <div class="col-md-12">
+        
+        <br><!-- comment -->
+        <br>
+        
     <form method="post" 
           action="index.php?uc=validerfrais&action=majNbJustificatifs" 
           role="form">
@@ -44,9 +54,11 @@
                    name="nbJustificatif"
                    size ="5cm"
                    value="<?php echo $nbJustificatifs ?>" 
-                   class="form-control">
+                   class="form-control col-md-auto"
+                   style="max-width: 150px;">
         </div>
         <button class="btn btn-success" type="submit">Valider</button>
         <button class="btn btn-danger" type="reset">Réinitialiser</button>
     </form>
+</div>
 </div>

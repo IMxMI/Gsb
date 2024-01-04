@@ -1,3 +1,5 @@
+<div class="row mx-auto">
+    <div class="col-md-12">
 
 <h1>Valider la fiche de frais</h1>
 <h3>Eléments forfaitisés</h3>
@@ -19,7 +21,8 @@
                                name="lesFrais[<?php echo $idFrais ?>]"
                                size="10" maxlength="5" 
                                value="<?php echo $quantite ?>" 
-                               class="form-control">
+                               class="form-control col-md-auto"
+                               style="max-width: 150px;">
                     </div>
                     <?php
                 }
