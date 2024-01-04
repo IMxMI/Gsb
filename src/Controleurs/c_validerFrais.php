@@ -30,13 +30,51 @@ switch ($action) {
         }
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($_SESSION['leVisiteurId'], $_SESSION['leMois']);
         $lesFraisForfait = $pdo->getLesFraisForfait($_SESSION['leVisiteurId'], $_SESSION['leMois']);
-        // $nbJustificatifs = $pdo->getNbjustificatifs($_SESSION['leVisiteurId'], $_SESSION['leMois']);
-        include PATH_VIEWS . "v_elementsForfaitises.php";
+        $nbJustificatifs = $pdo->getNbjustificatifs($_SESSION['leVisiteurId'], $_SESSION['leMois']);
+        include PATH_VIEWS . 'v_elementsForfaitises.php';
+        include PATH_VIEWS . 'v_elementsHorsForfait.php';
         break;
 
-        //var_dump($nbJustificatifs);
-
+    //permet de mettre a jour les données dans la base de donnée
+    case 'majFraisForfaitises' :
+        $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTRE_DEFAULT, FILTRE_FORCE_ARRAY);
+        if (Utilitaires::lesQteFraisValides($lesFrais)) {
+            $pdo->majFraisForfaitises($_SESSION['leVisiteurId'], $_SESSION['leMois'], $lesFrais);
+        } else {
+            Utilitaires::ajouterErreur('Les valeurs doivent être numérique');
+            include PATH_VIEWS . 'v_erreurs.php';
+        }
         break;
+
+    case 'majHorsFraisForfait':
+        $fraisHF = filter_input(INPUT_POST, 'lesFraisHF', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        //var_dump($fraisHF);
+        if (isset($fraisHF) && is_array($fraisHF)) {
+            foreach ($fraisHF as $id => $data) {
+                $date = $data['date'];
+                $libelle = $data['libelle'];
+                $montant = $data['montant'];
+                try{
+                    $pdo->majFraisHF($date, $libelle, $montant, $id);
+                } catch (Exception $ex) {
+                    Utilitaires::ajouterErreur('Les données ne sont pas valides');
+                    include PATH_VIEWS . 'v_erreurs.php';
+                }
+            }
+        }
+        break;
+        
+    case 'majNbDeJustificatifs':
+        $nbJustif =filter_input(INPUT_POST, 'nbJustificatif', FILTER_DEFAULT, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        try{
+            $pdo->majNbDeJustificatifs($_SESSION['leVisiteurId'], $_SESSION['leMois'], $nbJustif);
+        } catch (Exception $ex) {
+            Utilitaires::ajouterErreur("Le nombre de justificatifs n'est pas bon");
+            include PATH_VIEWS . 'v_erreurs.php';
+        }
+        break;
+
+    //var_dump($nbJustificatifs);
 }
         
 
