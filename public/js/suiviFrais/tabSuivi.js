@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sendData.style.display = "none";
 
     var cpt = 0;
+    var totalMV = 0;
 
     function buttonControl() {
         var button = document.getElementById('buttonSelectionAll');
@@ -22,67 +23,60 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    /*
-     * Selectionne l'ensemble des checkbox non selectionner
-     * et rajoute la classe selection. a chaque ligne des cases nouvellement cocher.
-     */
+    function mettreAJourMontantValide(row, isChecked) {
+        var montantValide = parseFloat(row.querySelector("td:nth-child(5)").innerText);
+        if (isChecked) {
+            totalMV += montantValide;
+            cpt++;
+            sendData.style.display = "block";
+        } else {
+            totalMV -= montantValide;
+            cpt--;
+            if (cpt <= 0) {
+                sendData.style.display = "none";
+                totalMV = 0;
+            }
+        }
+        console.log("Montant total: " + totalMV + "€");
+    }
+
+    var checkboxes = document.querySelectorAll('.Checkbox');
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", function () {
+            var row = this.closest("tr");
+            mettreAJourMontantValide(row, this.checked);
+        });
+    });
+
     function selects() {
         var ele = document.getElementsByName('checkbox');
         for (var i = 0; i < ele.length; i++) {
-            if (ele[i].type === 'checkbox')
+            if (ele[i].type === 'checkbox') {
                 ele[i].checked = true;
-            ele[i].parentNode.parentNode.parentNode.classList.add("selection");
-            cpt++;
-            sendData.style.display = "block";
-        }
-    }
-
-    /*
-     * Déselectionne l'ensemble des checkbox non selectionner
-     * et enleve la classe selection a chaque ligne des cases nouvellement déselectionner.
-     */
-    function deSelect() {
-        var ele = document.getElementsByName('checkbox');
-        for (var i = 0; i < ele.length; i++) {
-            if (ele[i].type === 'checkbox')
-                ele[i].checked = false;
-            ele[i].parentNode.parentNode.parentNode.classList.remove("selection");
-            cpt--;
-            sendData.style.display = "none";
-        }
-    }
-
-    // Sélection de toutes les cases à cocher dans le tableau
-// Sélection de toutes les cases à cocher avec la classe "Checkbox"
-    var checkboxes = document.querySelectorAll(".Checkbox");
-
-// Ajout d'un écouteur d'événement 'change' à chaque case à cocher
-    checkboxes.forEach(function (checkbox) {
-        checkbox.addEventListener("change", function () {
-            // Vérification si la checkbox est cochée
-            if (this.checked) {
-                // Accès à la ligne parente (le <tr>) de la checkbox
-                var row = this.closest("tr");
-
-                // Ajout de la classe à la ligne parente
+                var row = ele[i].parentNode.parentNode.parentNode;
                 row.classList.add("selection");
                 cpt++;
                 sendData.style.display = "block";
-            } else {
-                // Accès à la ligne parente (le <tr>) de la checkbox
-                var row = this.closest("tr");
+                mettreAJourMontantValide(row, true); // Mettre à jour le montant valide
+            }
+        }
+    }
 
-                // Suppression de la classe de la ligne parente
+    function deSelect() {
+        var ele = document.getElementsByName('checkbox');
+        for (var i = 0; i < ele.length; i++) {
+            if (ele[i].type === 'checkbox') {
+                ele[i].checked = false;
+                var row = ele[i].parentNode.parentNode.parentNode;
                 row.classList.remove("selection");
                 cpt--;
                 if (cpt <= 0) {
                     sendData.style.display = "none";
                 }
+                totalMV = 0;
             }
-        });
-    });
-
-
+        }
+    }
 
     function miseEnPaiement() {
         var elementsSelection = document.getElementsByClassName("selection");
