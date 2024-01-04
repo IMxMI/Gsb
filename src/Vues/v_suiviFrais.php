@@ -39,11 +39,15 @@
                                 echo $ficheFV['montantHorsFrais'];
                             };
                             ?></td>
-                        <td><?php
-                            if (isset($ficheFV['montantvalide'])) {
-                                echo $ficheFV['montantvalide'] . '€';
-                            };
-                            ?></td>
+                        <td montant="<?php
+                        if (isset($ficheFV['montantvalide'])) {
+                            echo $ficheFV['montantvalide'];
+                        };
+                        ?>"><?php
+                                if (isset($ficheFV['montantvalide'])) {
+                                    echo $ficheFV['montantvalide'] . '€';
+                                };
+                                ?></td>
 
 
                         <td><center><input type="checkbox" name="checkbox" class="Checkbox" idCheckBox="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>"></center></td>
@@ -63,8 +67,10 @@
         <button class=" btn-MP btn btn-secondary btn-sm btn-nav" id="sendData">Send</button>
     </div>
     <div class="card-info">
-        <p>Il y a <?php if(isset($cptFicheFV)){
-            echo $cptFicheFV ;
-        } ?> fiches de frais.</p>
+        <p>Il y a <?php
+            if (isset($cptFicheFV)) {
+                echo $cptFicheFV;
+            }
+            ?> fiches de frais.</p>
     </div>
 </div>
