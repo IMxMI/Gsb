@@ -70,9 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 var row = ele[i].parentNode.parentNode.parentNode;
                 row.classList.remove("selection");
                 cpt--;
-                if (cpt <= 0) {
-                    sendData.style.display = "none";
-                }
+                sendData.style.display = "none";
                 totalMV = 0;
             }
         }
