@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    var button = document.getElementById('buttonTest');
+    var button = document.getElementById('buttonSelectionAll');
     button.addEventListener("click", buttonControl);
 
     var sendData = document.getElementById("sendData");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var cpt = 0;
 
     function buttonControl() {
-        var button = document.getElementById('buttonTest');
+        var button = document.getElementById('buttonSelectionAll');
         if (button.classList.contains('selectionner')) {
             button.classList.remove('selectionner');
             button.innerHTML = 'Tout sélectionner';
@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /*
+     * Selectionne l'ensemble des checkbox non selectionner
+     * et rajoute la classe selection. a chaque ligne des cases nouvellement cocher.
+     */
     function selects() {
         var ele = document.getElementsByName('checkbox');
         for (var i = 0; i < ele.length; i++) {
@@ -33,6 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /*
+     * Déselectionne l'ensemble des checkbox non selectionner
+     * et enleve la classe selection a chaque ligne des cases nouvellement déselectionner.
+     */
     function deSelect() {
         var ele = document.getElementsByName('checkbox');
         for (var i = 0; i < ele.length; i++) {

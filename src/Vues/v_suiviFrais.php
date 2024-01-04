@@ -4,8 +4,6 @@
 <div class="panel panel-warning">
     <div class="panel-heading">
         <span class="glyphicon glyphicon-bookmark"></span>  Liste des fiches de frais validées
-        <button id="buttonTest" type="button" class="btn btn-secondary btn-sm btn-nav" style="float:inline-end; position: relative; top: -5px; width: 150px">Tout sélectionner
-        </button>
     </div>
     <table class="table table-striped table-hover">
         <thead>
@@ -56,6 +54,13 @@
     </table>
 </div>
 
-<div class="sticky-bottom">
-    <button class="btn btn-warning btn-lg" id="sendData">Send</button>
+
+<div class="card panel panel-warning">
+    <div class="card-btn">
+        <button id="buttonSelectionAll" type="button" class="btn btn-secondary btn-sm btn-nav" style="position: relative; top: -5px; width: 150px">Tout sélectionner</button>
+        <button class="btn btn-secondary btn-sm btn-nav" id="sendData" style="position: relative; width: 150px">Send</button>
+    </div>
+    <div class="card-info">
+        <p>Aucun éléments sélectionner ...</p>
+    </div>
 </div>
