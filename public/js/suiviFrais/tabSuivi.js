@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var sendData = document.getElementById("sendData");
     sendData.addEventListener("click", miseEnPaiement);
     sendData.style.display = "none";
+    
+    var totalMontant = document.getElementById('card-info').getAttribute("totalMontant");
 
     var cpt = 0;
     var totalMV = 0;
@@ -37,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 totalMV = 0;
             }
         }
-        console.log("Montant total: " + totalMV + "€");
     }
 
     var checkboxes = document.querySelectorAll('.Checkbox');
@@ -96,6 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var parametres = JSON.stringify(visiteurs);
         xhr.send(parametres);
     }
+    
+    
 
 
 });
