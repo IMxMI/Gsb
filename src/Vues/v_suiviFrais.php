@@ -30,12 +30,12 @@
                         ?></td>
                     <td><?php
                         if (isset($ficheFV['montantFrais'])) {
-                            echo $ficheFV['montantFrais'];
+                            echo $ficheFV['montantFrais'] . '€';
                         };
                         ?></td><td>
                         <?php
                         if (isset($ficheFV['montantHorsFrais'])) {
-                            echo $ficheFV['montantHorsFrais'];
+                            echo $ficheFV['montantHorsFrais'] . '€';
                         };
                         ?></td>
                     <td montant="<?php
@@ -63,10 +63,19 @@
         <button id="buttonSelectionAll" type="button" class="btn-MP btn btn-info btn-sm btn-nav">Tout sélectionner</button>
         <button class=" btn-MP btn btn-secondary btn-sm btn-nav" id="sendData">Send</button>
     </div>
-    <div class="card-info">
-        <p>Il y a <?php
+    <div id="card-info" totalMontant="<?php
+    if (isset($cptFicheFV)) {
+        echo $cptFicheFV;
+    }
+    ?>" class="card-info">
+        <p id="text-info">
+            <?php
             if (isset($cptFicheFV)) {
-                echo $cptFicheFV;
+                if ($cptFicheFV <= 50) {
+                    echo $cptFicheFV;
+                } else {
+                    echo '50/' . $cptFicheFV;
+                }
             }
             ?> fiches de frais.</p>
     </div>
