@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sendData.addEventListener("click", miseEnPaiement);
     sendData.style.display = "none";
     
-    var totalMontant = document.getElementById('card-info').getAttribute("totalMontant");
+    var totalNbFiches = document.getElementById('card-info').getAttribute("totalMontant");
 
     var cpt = 0;
     var totalMV = 0;
@@ -89,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
             };
             elementsSelection[i].style.display = "none";
             visiteurs.push(ligne);
+            totalNbFiches = totalNbFiches - cpt;
+            cpt = 0;
         }
 
         var xhr = new XMLHttpRequest();
