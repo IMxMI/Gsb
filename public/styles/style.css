@@ -103,3 +103,11 @@ code {
     width: 230px;
     margin-top: 5px;
 }
+
+#text-info{
+    text-align: center;
+    margin-bottom: 0px;
+    font-style: italic;
+    font-size: smaller;
+    color: #9f9f9f;
+}
