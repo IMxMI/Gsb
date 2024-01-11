@@ -1,9 +1,15 @@
-const itemsPerPage = 20; // Nombre d'éléments par page
-const currentPage = 27;
-
 document.addEventListener("DOMContentLoaded", function () {
-    showItems();
+    
+    //Pagination
+    var itemsPerPage = 20; // Nombre d'éléments par page
+    var currentPage = document.getElementById('itemsPerPage').value; // Page actuelle
 
+    var rowsTable = document.querySelectorAll('table tbody tr');
+    var maxRows = rowsTable.length / itemsPerPage;
+    
+    showItems();
+    
+    //Tableau
     var button = document.getElementById('buttonSelectionAll');
     button.addEventListener("click", buttonControl);
 
@@ -110,16 +116,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fonction pour afficher les éléments de la page actuelle
     function showItems() {
-        var rows = document.querySelectorAll('table tbody tr');
+        if (maxRows < currentPage) {
+            currentPage = 1;
+        }
         var startIndex = (currentPage - 1) * itemsPerPage;
         var endIndex = startIndex + itemsPerPage;
 
         // Masquer toutes les lignes
-        rows.forEach(row => row.style.display = 'none');
+        rowsTable.forEach(row => row.style.display = 'none');
 
         // Afficher les éléments de la page actuelle
-        for (let i = startIndex; i < endIndex && i < rows.length; i++) {
-            rows[i].style.display = '';
+        for (let i = startIndex; i < endIndex && i < rowsTable.length; i++) {
+            rowsTable[i].style.display = '';
         }
     }
 
