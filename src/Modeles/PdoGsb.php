@@ -313,6 +313,22 @@ class PdoGsb {
         $requetePrepare->execute();
     }
 
+    public function majFraisHF($date, $libelle, $montant, $id) {
+        $requetePrepare = $this->connexion->prepare(
+                'UPDATE lignefraishorsforfait '
+                . 'SET lignefraishorsforfait.date = :date, '
+                . 'lignefraishorsforfait.libelle = :libelle, '
+                . 'lignefraishorsforfait.montant = :montant '
+                . 'WHERE lignefraishorsforfait.id = :id'
+        );
+
+        $requetePrepare->bindParam(':date', $date, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':montant', $montant, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':id', $id, PDO::PARAM_INT);
+        $requetePrepare->execute();
+    }
+
     /**
      * Teste si un visiteur possède une fiche de frais pour le mois passé en argument
      *
@@ -370,7 +386,8 @@ class PdoGsb {
      *
      * @return null
      */
-    public function creeNouvellesLignesFrais($idVisiteur, $mois): void{
+    public function creeNouvellesLignesFrais($idVisiteur, $mois): void {
+        
         $dernierMois = $this->dernierMoisSaisi($idVisiteur);
         $laDerniereFiche = $this->getLesInfosFicheFrais($idVisiteur, $dernierMois);
         if ($laDerniereFiche['idEtat'] == 'CR') {
@@ -471,26 +488,26 @@ class PdoGsb {
         return $lesMois;
     }
 
-    public function getLesMoisDisponiblesBis(): array {
-        $requetePrepare = $this->connexion->prepare(
-                'SELECT DISTINCT fichefrais.mois AS mois FROM fichefrais '
-                . 'ORDER BY fichefrais.mois desc'
-        );
-        //$requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        $lesMois = array();
-        while ($laLigne = $requetePrepare->fetch()) {
-            $mois = $laLigne['mois'];
-            $numAnnee = substr($mois, 0, 4);
-            $numMois = substr($mois, 4, 2);
-            $lesMois[] = array(
-                'mois' => $mois,
-                'numAnnee' => $numAnnee,
-                'numMois' => $numMois
-            );
-        }
-        return $lesMois;
-    }
+//    public function getLesMoisDisponiblesBis(): array {
+//        $requetePrepare = $this->connexion->prepare(
+//                'SELECT DISTINCT fichefrais.mois AS mois FROM fichefrais '
+//                . 'ORDER BY fichefrais.mois desc'
+//        );
+//        //$requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+//        $requetePrepare->execute();
+//        $lesMois = array();
+//        while ($laLigne = $requetePrepare->fetch()) {
+//            $mois = $laLigne['mois'];
+//            $numAnnee = substr($mois, 0, 4);
+//            $numMois = substr($mois, 4, 2);
+//            $lesMois[] = array(
+//                'mois' => $mois,
+//                'numAnnee' => $numAnnee,
+//                'numMois' => $numMois
+//            );
+//        }
+//        return $lesMois;
+//    }
 
     /**
      * Retourne les informations d'une fiche de frais d'un visiteur pour un
@@ -604,7 +621,5 @@ class PdoGsb {
         $laLigne = $requetePrepare->fetch();
         return $laLigne['nb'];
     }
-
-  
 
 }
