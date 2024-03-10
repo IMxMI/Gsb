@@ -12,7 +12,7 @@
     <div class="panel-heading">
         <span class="glyphicon glyphicon-bookmark"></span>  Liste des fiches de frais validées
     </div>
-    <table class="table table-striped table-hover">
+    <table id="mxtable" class="mxtable table table-striped table-hover">
         <thead>
             <tr>
                 <th>Visiteurs <span class="glyphicon glyphicon-user"></span></th>

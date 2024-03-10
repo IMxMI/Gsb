@@ -1,96 +1,51 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    //Pagination
-    var itemsPerPage = 20; // Nombre d'éléments par page
-    var currentPage = document.getElementById('itemsPerPage').value; // Page actuelle
-
-    var rowsTable = document.querySelectorAll('table tbody tr');
-    var maxRows = rowsTable.length / itemsPerPage;
+    var table = document.getElementById('mxtable');
+    var tableLignes = document.getElementById('mxtable').children[1].children;
+    var paginationSelect = document.getElementById("itemsPerPage");
+    
+    var itemsPage = 20; //Nombre d'éléments afficher par pages (20 de base).
+    var page = 0; //Page actuelle (0 de base).
+    var nbLignes = tableLignes.length; //nombre de TD dans le tableau.
+    var maxPage = maxPageF(nbLignes, itemsPage); // Nombre de pages maximum.
     
     showItems();
     
-    //Tableau
-    var button = document.getElementById('buttonSelectionAll');
-    button.addEventListener("click", buttonControl);
-
-    var sendData = document.getElementById("sendData");
-    sendData.addEventListener("click", miseEnPaiement);
-    sendData.style.display = "none";
-
-    var totalNbFiches = document.getElementById('card-info').getAttribute("totalMontant");
-
-    var cpt = 0;
-    var totalMV = 0;
-
-    function buttonControl() {
-        var button = document.getElementById('buttonSelectionAll');
-        if (button.classList.contains('selectionner')) {
-            button.classList.remove('selectionner');
-            button.innerHTML = 'Tout sélectionner';
-            deSelect();
-        } else {
-            button.classList.add('selectionner');
-            button.innerHTML = 'Tout désélectionner';
-            selects();
-        }
+    /*
+     * @return integer nb page max
+     */
+    function maxPageF(nbLignes, itemsPage) {
+        return Math.ceil(nbLignes / itemsPage);
     }
-
-    function mettreAJourMontantValide(row, isChecked) {
-        var montantValide = parseFloat(row.querySelector("td:nth-child(5)").innerText);
-        if (isChecked) {
-            totalMV += montantValide;
-            cpt++;
-            sendData.style.display = "block";
-        } else {
-            totalMV -= montantValide;
-            cpt--;
-            if (cpt <= 0) {
-                sendData.style.display = "none";
-                totalMV = 0;
-            }
+    
+    paginationSelect.addEventListener("change", function(){
+        if(paginationSelect.value === 'All'){
+            itemsPage = nbLignes;
         }
-    }
-
-    var checkboxes = document.querySelectorAll('.Checkbox');
-    checkboxes.forEach(function (checkbox) {
-        checkbox.addEventListener("change", function () {
-            var row = this.closest("tr");
-            mettreAJourMontantValide(row, this.checked);
-        });
+        else{
+            itemsPage =  parseInt(paginationSelect.value);
+        }
+        maxPage = maxPageF(nbLignes, itemsPage);
+        showItems();
     });
-
-    function selects() {
-        var ele = document.getElementsByName('checkbox');
-        for (var i = 0; i < ele.length; i++) {
-            if (ele[i].type === 'checkbox') {
-                ele[i].checked = true;
-                var row = ele[i].parentNode.parentNode.parentNode;
-                row.classList.add("selection");
-                cpt++;
-                sendData.style.display = "block";
-                mettreAJourMontantValide(row, true); // Mettre à jour le montant valide
-            }
+    
+    /*
+     * Affiche le nombre voulu  de lignes.
+     */
+    function showItems(){
+        for(var i = 0; i < tableLignes.length; i++) {
+            tableLignes[i].style.display = 'none';
+        }
+        var startIndex = page * itemsPage;
+        var endIndex = Math.min(startIndex + itemsPage, nbLignes);
+        
+        for(var i = startIndex; i < endIndex; i++) {
+            tableLignes[i].style.display = '';
         }
     }
-
-    function deSelect() {
-        var ele = document.getElementsByName('checkbox');
-        for (var i = 0; i < ele.length; i++) {
-            if (ele[i].type === 'checkbox') {
-                ele[i].checked = false;
-                var row = ele[i].parentNode.parentNode.parentNode;
-                row.classList.remove("selection");
-                cpt--;
-                sendData.style.display = "none";
-                totalMV = 0;
-            }
-        }
-    }
-
-    function afficheNbFichesFrais() {
-
-    }
-
+    
+    
+    
     function miseEnPaiement() {
         var elementsSelection = document.getElementsByClassName("selection");
         var visiteurs = [];
@@ -113,22 +68,4 @@ document.addEventListener("DOMContentLoaded", function () {
         var parametres = JSON.stringify(visiteurs);
         xhr.send(parametres);
     }
-
-    // Fonction pour afficher les éléments de la page actuelle
-    function showItems() {
-        if (maxRows < currentPage) {
-            currentPage = 1;
-        }
-        var startIndex = (currentPage - 1) * itemsPerPage;
-        var endIndex = startIndex + itemsPerPage;
-
-        // Masquer toutes les lignes
-        rowsTable.forEach(row => row.style.display = 'none');
-
-        // Afficher les éléments de la page actuelle
-        for (let i = startIndex; i < endIndex && i < rowsTable.length; i++) {
-            rowsTable[i].style.display = '';
-        }
-    }
-
 });

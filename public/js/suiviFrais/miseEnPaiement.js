@@ -1,7 +1,8 @@
 $(document).ready(function () {
-    // Tableau de données à envoyer
-    var tableauData = [1, 2, 3, 4, 5]; // Exemple d'un tableau de données
-
+    
+    
+    
+    
     // Appel Ajax
     $.ajax({
         url: 'c_suivifrais/miseEnPaiement', // URL de votre contrôleur et fonction
