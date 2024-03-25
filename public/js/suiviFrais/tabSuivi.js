@@ -1,12 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
+    
+    //Pagination
+    var itemsPerPage = 20; // Nombre d'éléments par page
+    var currentPage = document.getElementById('itemsPerPage').value; // Page actuelle
 
+    var rowsTable = document.querySelectorAll('table tbody tr');
+    var maxRows = rowsTable.length / itemsPerPage;
+    
+    showItems();
+    
+    //Tableau
     var button = document.getElementById('buttonSelectionAll');
     button.addEventListener("click", buttonControl);
 
     var sendData = document.getElementById("sendData");
     sendData.addEventListener("click", miseEnPaiement);
     sendData.style.display = "none";
-    
+
     var totalNbFiches = document.getElementById('card-info').getAttribute("totalMontant");
 
     var cpt = 0;
@@ -77,6 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function afficheNbFichesFrais() {
+
+    }
+
     function miseEnPaiement() {
         var elementsSelection = document.getElementsByClassName("selection");
         var visiteurs = [];
@@ -99,8 +113,22 @@ document.addEventListener("DOMContentLoaded", function () {
         var parametres = JSON.stringify(visiteurs);
         xhr.send(parametres);
     }
-    
-    
 
+    // Fonction pour afficher les éléments de la page actuelle
+    function showItems() {
+        if (maxRows < currentPage) {
+            currentPage = 1;
+        }
+        var startIndex = (currentPage - 1) * itemsPerPage;
+        var endIndex = startIndex + itemsPerPage;
+
+        // Masquer toutes les lignes
+        rowsTable.forEach(row => row.style.display = 'none');
+
+        // Afficher les éléments de la page actuelle
+        for (let i = startIndex; i < endIndex && i < rowsTable.length; i++) {
+            rowsTable[i].style.display = '';
+        }
+    }
 
 });

@@ -1,6 +1,13 @@
 <?php ?>
 <script type="text/javascript" src="js/suiviFrais/tabSuivi.js"></script>
 <script type="text/javascript" src="js/creationXHR.js"></script>
+<label for="itemsPerPage">Nombre d'éléments</label>
+<select id='itemsPerPage'>
+    <option value='20'>20</option>
+    <option value='50'>50</option>
+    <option value='100'>100</option>
+    <option value='All'>All</option>
+</select>
 <div class="panel panel-warning">
     <div class="panel-heading">
         <span class="glyphicon glyphicon-bookmark"></span>  Liste des fiches de frais validées
@@ -56,6 +63,11 @@
         ?>
         </tbody>
     </table>
+        <div id="pagination-container" class="text-center">
+        <button onclick="prevPage()" class="btn btn-default">Précédent</button>
+        <span id="currentPage" class="page-indicator">1</span>
+        <button onclick="nextPage()" class="btn btn-default">Suivant</button>
+    </div>
 </div>
 </div>
 <div class="card panel panel-warning">
