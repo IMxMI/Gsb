@@ -6,7 +6,7 @@
 
         <div class="panel panel-info">
             <div class="panel-heading">Descriptif des éléments hors forfait</div>
-            <form id="validationForm" method="post" action="index.php?uc=validerfrais&action=majHorsFraisForfait" role="form">
+            <form id="validationForm" method="post" action="index.php?uc=validerFrais&action=majHorsFraisForfait" role="form">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -17,7 +17,15 @@
                         </tr>
                     </thead>  
                     <tbody>
-                        <?php foreach ($lesFraisHorsForfait as $unFraisHorsForfait) { ?>
+                        <?php
+                        foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
+                            $libelle = $unFraisHorsForfait['libelle'];
+                            // Vérifier si la clé 'refuse' existe dans le tableau $unFraisHorsForfait
+                            if (isset($unFraisHorsForfait['refuse']) && $unFraisHorsForfait['refuse'] == 1) {
+                                // Si la clé 'refuse' existe et vaut 1, ajoutez "REFUSE" au début du libellé
+                                $libelle = "REFUSE - " . $libelle;
+                            }
+                            ?>
                             <tr>
                                 <td>
                                     <input type="date" name="lesFraisHF[<?php echo $unFraisHorsForfait['id'] ?>][date]" size="10" value="<?php echo Outils\Utilitaires::dateFrancaisVersAnglais($unFraisHorsForfait['date']) ?>" class="form-control">
@@ -32,7 +40,7 @@
                                     <input type="hidden" name="lesFraisHF[<?php echo $unFraisHorsForfait['id'] ?>][id]" value="<?php echo $unFraisHorsForfait['id'] ?>">
                                     <button class="btn btn-success" type="submit">Corriger</button>
                                     <button class="btn btn-danger" type="reset">Réinitialiser</button>
-                                    <button class="btn btn-warning" type="button" onclick="refuser()">Refuser</button>
+                                    <button class="btn btn-warning" type="button" onclick="refuser('<?php echo $unFraisHorsForfait['id'] ?>')">Refuser</button>
 
                                 </td>
                             </tr>
@@ -48,7 +56,7 @@
         <br>
 
         <form method="post" 
-              action="index.php?uc=validerfrais&action=majNbJustificatifs" 
+              action="index.php?uc=validerFrais&action=majNbJustificatifs" 
               role="form">
             <div class="form-group">
                 <label for="nbJustificatif">Nombre de justificatifs : </label>
@@ -64,8 +72,18 @@
         </form>
     </div>
     <script>
-        function refuser() {
-            document.getElementById('validationForm').action = 'index.php?uc=validerfrais&action=refuser';
-            document.getElementById('validationForm').submit();
+        function refuser(idFrais) {
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'index.php?uc=validerFrais&action=refuser';
+
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'idFraisRefuse';
+            input.value = idFrais;
+
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
         }
     </script>

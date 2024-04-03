@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4">
                 <form method="post" 
-                      action="index.php?uc=validerfrais&action=majFraisForfait" 
+                      action="index.php?uc=validerFrais&action=majFraisForfait" 
                       role="form">
                         <?php
                         foreach ($lesFraisForfait as $unFrais) {

@@ -36,6 +36,8 @@
  * @link      http://www.php.net/manual/fr/book.pdo.php PHP Data Objects sur php.net
  */
 
+// Activation des rapports d'erreurs PHP
+
 namespace Modeles;
 
 use PDO;
@@ -303,12 +305,8 @@ class PdoGsb {
                 . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
                 . 'AND fichefrais.mois = :unMois'
         );
-        $requetePrepare->bindParam(
-                ':unNbJustificatifs',
-                $nbJustificatifs,
-                PDO::PARAM_INT
-        );
-        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unNbJustificatifs',$nbJustificatifs,PDO::PARAM_INT);
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur,PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
@@ -609,7 +607,7 @@ class PdoGsb {
 
     // retourne le nombre de justificatifs d'un visiteur pour un certain mois
 
-    public function getNbJustificatifs($idVisiteur, $mois): int {
+    public function getNbJustificatifs($idVisiteur, $mois){
         $requetePrepare = $this->connexion->prepare(
                 'SELECT fichefrais.nbjustificatifs as nb FROM fichefrais '
                 . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
@@ -621,5 +619,16 @@ class PdoGsb {
         $laLigne = $requetePrepare->fetch();
         return $laLigne['nb'];
     }
+    
+    //refuser les frais hors forfait 
 
+    public function refuserFraisHorsForfait($idFrais): void {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE lignefraishorsforfait '
+                . 'SET lignefraishorsforfait.libelle = CONCAT("REFUSE ", lignefraishorsforfait.libelle)'
+                . 'WHERE lignefraishorsforfait.id = :unIdFrais'
+        );
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
 }
