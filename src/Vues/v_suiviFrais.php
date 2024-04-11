@@ -63,32 +63,23 @@
         ?>
         </tbody>
     </table>
-        <div id="pagination-container" class="text-center">
-        <button onclick="prevPage()" class="btn btn-default">Précédent</button>
-        <span id="currentPage" class="page-indicator">1</span>
-        <button onclick="nextPage()" class="btn btn-default">Suivant</button>
-    </div>
 </div>
-</div>
+<nav aria-label="...">
+    <ul class="pager">
+        <li id="previous"><a>Précédent</a></li>
+        page
+        <li id="page"></li>
+        sur
+        <li id="maxPage"></li>
+        <li id="next"><a>Suivant</a></li>
+    </ul>
+</nav>
 <div class="card panel panel-warning">
     <div class="card-btn">
-        <button id="buttonSelectionAll" type="button" class="btn-MP btn btn-info btn-sm btn-nav">Tout sélectionner</button>
+        <button id="buttonSelectionAll" type="button" class="active btn-MP btn btn-info btn-sm btn-nav">Tout sélectionner</button>
         <button class=" btn-MP btn btn-secondary btn-sm btn-nav" id="sendData">Send</button>
     </div>
-    <div id="card-info" totalMontant="<?php
-    if (isset($cptFicheFV)) {
-        echo $cptFicheFV;
-    }
-    ?>" class="card-info">
-        <p id="text-info">
-            <?php
-            if (isset($cptFicheFV)) {
-                if ($cptFicheFV <= 50) {
-                    echo $cptFicheFV;
-                } else {
-                    echo '50/' . $cptFicheFV;
-                }
-            }
-            ?> fiches de frais.</p>
+    <div id="card-info" class="card-info">
+        <p id="text-info"></p>
     </div>
 </div>
