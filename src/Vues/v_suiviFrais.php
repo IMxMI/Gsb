@@ -12,6 +12,7 @@
     <div class="panel-heading">
         <span class="glyphicon glyphicon-bookmark"></span>  Liste des fiches de frais validées
     </div>
+    <form method="post" action="/index.php?uc=suiviFicheFrais&action=suivieFrais">
     <table id="mxtable" class="mxtable table table-striped table-hover">
         <thead>
             <tr>
@@ -56,7 +57,7 @@
                             ?></td>
 
 
-                    <td><center><input type="checkbox" name="checkbox" class="Checkbox" idCheckBox="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>"></center></td>
+                    <td><center><input type="checkbox" name="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>" class="Checkbox" idCheckBox="<?php echo $ficheFV['idvisiteur'] . '-' . $ficheFV['mois'] ?>"></center></td>
 
             </tr>
         <?php };
@@ -77,9 +78,10 @@
 <div class="card panel panel-warning">
     <div class="card-btn">
         <button id="buttonSelectionAll" type="button" class="active btn-MP btn btn-info btn-sm btn-nav">Tout sélectionner</button>
-        <button class=" btn-MP btn btn-secondary btn-sm btn-nav" id="sendData">Send</button>
+        <button type="submit" class=" btn-MP btn btn-secondary btn-sm btn-nav" id="sendData">Send</button>
     </div>
     <div id="card-info" class="card-info">
         <p id="text-info"></p>
     </div>
 </div>
+</form>

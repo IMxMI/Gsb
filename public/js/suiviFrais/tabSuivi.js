@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var tableLignes = document.getElementById('mxtable').children[1].children;
     var paginationSelect = document.getElementById("itemsPerPage");
     var selectionAll = document.getElementById("buttonSelectionAll");
-    var check = document.getElementsByClassName("Checkbox");
 
     var itemsPage = 20; //Nombre d'éléments afficher par pages (20 de base).
     var page = 0; //Page actuelle (0 de base).
@@ -12,6 +11,25 @@ document.addEventListener("DOMContentLoaded", function () {
     var maxPage = maxPageF(nbLignes, itemsPage); // Nombre de pages maximum.
 
     showItems();
+
+    function ifSelectionPage(){
+        nb = document.getElementsByClassName("visible").length;
+        visible = document.getElementsByClassName("visible");
+        cpt = 0;
+        for (var i = 0; i < nb; i++) {
+            if (visible[i].children[5].children[0].children[0].checked === true){
+                cpt++;
+            }
+        }
+        if(cpt === nb){
+            selectionAll.classList.remove("active");
+            selectionAll.innerHTML = "Tout désélectionner";
+        }
+        else{
+            selectionAll.classList.add("active");
+            selectionAll.innerHTML = "Tout sélectionner";
+        }
+    }
 
     document.getElementById("previous").addEventListener("click", function () {
         if (page > 0){
@@ -64,6 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     paginationSelect.addEventListener("change", function () {
+        paginationSelectChange();
+    });
+
+    function paginationSelectChange() {
         if (paginationSelect.value === 'All') {
             itemsPage = nbLignes;
             page=0;
@@ -73,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         maxPage = maxPageF(nbLignes, itemsPage);
         showItems();
-    });
+    }
 
     /*
      * Affiche le nombre voulu  de lignes.
@@ -96,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function paginationNav() {
+        ifSelectionPage();
         if (page === 0) {
             document.getElementById("previous").classList.add("disabled");
         }
@@ -110,27 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
-    function miseEnPaiement() {
-        var elementsSelection = document.getElementsByClassName("selection");
-        var visiteurs = [];
-        for (var i = 0; i < elementsSelection.length; i++) {
-            var idVisiteur = elementsSelection[i].getAttribute("idlignevisiteur");
-            var idMois = elementsSelection[i].getAttribute("idlignemois");
-            var ligne = {
-                idVisiteur: idVisiteur,
-                idMois: idMois
-            };
-            elementsSelection[i].style.display = "none";
-            visiteurs.push(ligne);
-            totalNbFiches = totalNbFiches - cpt;
-            cpt = 0;
-        }
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/index.php?uc=suiviFicheFrais&action=miseEnPaiement", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        var parametres = JSON.stringify(visiteurs);
-        xhr.send(parametres);
-    }
+    document.getElementById("sendData").addEventListener("click", function () {
+        miseEnPaiement();
+    });
 });

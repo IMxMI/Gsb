@@ -23,28 +23,27 @@ switch ($action) {
             $montantFraisForfait = $pdo->getMontantFraisForfait($ficheFV['idvisiteur'], $ficheFV['mois']);
             $ficheFV['montantHorsFrais'] = $montantTotalHorsForfait[0];
             $ficheFV['montantFrais'] = $montantFraisForfait[0];
-            
+            $tableMP = [];
+            $tableVis = [];
+
+            if (isset($_POST[$ficheFV['idvisiteur'] . '-' . $ficheFV['mois']]) && $_POST[$ficheFV['idvisiteur'] . '-' . $ficheFV['mois']] == 'on') {
+                array_push($tableVis, $ficheFV['idvisiteur']);
+                array_push($tableVis, $ficheFV['mois']);
+                array_push($tableMP, array($tableVis));
+                $pdo->updateFicheFraisValid($ficheFV['idvisiteur'], $ficheFV['mois']);
+                $tableVis = [];
+            }
         }
+        if($tableMP <> []) {
+            header("Location: /index.php?uc=suiviFicheFrais&action=suivieFrais");
+            exit();
+        }
+
         $cptFicheFV = count($ficheFraisValid);
         include_once PATH_VIEWS . 'v_suiviFrais.php';
 
+
         break;
-
-    case 'miseEnPaiement':
-        $inputJSON = file_get_contents('php://input');
-        $data = json_decode($inputJSON, true);
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($data && is_array($data)) {
-                // Affichage des données reçues
-                foreach ($data as $test) {
-                    echo "idVisiteur: " . $test['idVisiteur'] . "<br>";
-                    echo "idMois: " . $test['idMois'] . "<br>";
-                }
-            }
-        }
-        break;
-
     default:
         break;
 }

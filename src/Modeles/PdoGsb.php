@@ -597,7 +597,7 @@ class PdoGsb {
     public function updateFicheFraisValid($idVisiteur, $mois) {
         $requetePrepare = $this->connexion->prepare(
                 "update fichefrais"
-                . "set idetat = 'MP'"
+                . " set idetat = 'MP'"
                 . " where fichefrais.idvisiteur = :unIdVisiteur and fichefrais.mois = :unMois;  "
         );
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
@@ -609,9 +609,9 @@ class PdoGsb {
 
     public function getNbJustificatifs($idVisiteur, $mois){
         $requetePrepare = $this->connexion->prepare(
-                'SELECT fichefrais.nbjustificatifs as nb FROM fichefrais '
-                . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
-                . 'AND fichefrais.mois = :unMois'
+                "SELECT fichefrais.nbjustificatifs as nb FROM fichefrais "
+                . "WHERE fichefrais.idvisiteur = :unIdVisiteur "
+                . "AND fichefrais.mois = :unMois"
         );
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
