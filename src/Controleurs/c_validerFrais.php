@@ -23,7 +23,7 @@ switch ($action) {
     case 'selectionnerMoisVisiteur':
         $_SESSION['leMois'] = filter_input(INPUT_POST, 'leMois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $_SESSION['leVisiteurId'] = filter_input(INPUT_POST, 'unVisiteur', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ($_SESSION['leMois'] == 'none' || $_SESSION['leVisiteurId'] == 'none') {
+        if (!isset($_SESSION['leMois']) || !isset($_SESSION['leVisiteurId'])) {
             break;
         } elseif ($pdo->estPremierFraisMois($_SESSION['leVisiteurId'], $_SESSION['leMois'])) {
             $pdo->creeNouvellesLignesFrais($_SESSION['leVisiteurId'], $_SESSION['leMois']);

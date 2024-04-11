@@ -71,6 +71,8 @@
             <button class="btn btn-danger" type="reset">Réinitialiser</button>
         </form>
     </div>
+</div>
+</div>
     <script>
         function refuser(idFrais) {
             var form = document.createElement('form');
