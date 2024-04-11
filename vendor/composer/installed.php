@@ -1,4 +1,6 @@
-<?php return array(
+<?php
+
+return array(
     'root' => array(
         'name' => 'gsb/applifrais',
         'pretty_version' => 'dev-main',

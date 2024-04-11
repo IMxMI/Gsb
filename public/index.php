@@ -14,7 +14,6 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 use Modeles\PdoGsb;
 use Outils\Utilitaires;
 
@@ -51,6 +50,12 @@ switch ($uc) {
         break;
     case 'deconnexion':
         include PATH_CTRLS . 'c_deconnexion.php';
+        break;
+    case 'validerFrais';
+        include PATH_CTRLS . 'c_validerFrais.php';
+        break;
+    case 'suiviFicheFrais';
+        include PATH_CTRLS . 'c_suiviFicheFrais.php';
         break;
     default:
         Utilitaires::ajouterErreur('Page non trouvée, veuillez vérifier votre lien...');

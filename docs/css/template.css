@@ -177,7 +177,10 @@
     margin-top: .2rem;
 }
 .phpdocumentor-class-graph {
-    width: 100%; height: 600px; border:1px solid black; overflow: hidden
+    width: 100%;
+    height: 600px;
+    border:1px solid black;
+    overflow: hidden
 }
 
 .phpdocumentor-class-graph__graph {

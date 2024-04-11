@@ -1,34 +1,113 @@
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 body {
-  margin-bottom: 60px; /* Margin bottom by footer height */
+    margin-bottom: 60px; /* Margin bottom by footer height */
 }
 .header {
     margin-top: 10px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px; /* Set the fixed height of the footer here */
-  background-color: #f5f5f5;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Set the fixed height of the footer here */
+    background-color: #f5f5f5;
 }
 body > .container {
-  padding: 60px 15px 25px;
+    padding: 60px 15px 25px;
 }
 .container .text-muted {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 .footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 footer .container p {
-	text-align: center;
-	color: #337ab7;
+    text-align: center;
+    color: #337ab7;
 }
 code {
-  font-size: 80%;
+    font-size: 80%;
+}
+
+.comptable > li > a {
+    color: #FF8800;
+}
+
+.activecomptable > a {
+    background-color: #FF8800 !important;
+    color: white !important;
+}
+
+.panel-comptable {
+    color: white !important;
+    border-color: #FF8800 !important;
+}
+
+.panel-heading-comptable {
+    background-color: #FF8800 !important;
+    border-color: #FF8800 !important;
+}
+
+.panel-table{
+    color: black!important
+}
+
+.panel-infocmp{
+    border-color: #FF8800 !important;
+
+}
+.table-bordered{
+    border: 1px solid #FF8800;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #FF8800;
+}
+.panel-heading{
+    color: black!important
+
+}
+.panel-heading-elementHorsForfait {
+    color: white!important;
+}
+
+.panel-info-comptable {
+    border-color: #FF8800 !important;
+
+}
+
+.card {
+    width: 250px;
+    border-width: medium;
+    border-color:#FF8800;
+    position: fixed;
+    right: 100px;
+    top: 307px;
+    height: fit-content;
+    border-radius: 10px;
+}
+
+.card-btn {
+    display: grid;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btn-MP {
+    position: relative;
+    top: -15px;
+    width: 230px;
+    margin-top: 5px;
+}
+
+#text-info{
+    text-align: center;
+    margin-bottom: 0px;
+    font-style: italic;
+    font-size: smaller;
+    color: #9f9f9f;
 }

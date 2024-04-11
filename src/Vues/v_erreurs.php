@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Vue Erreurs
  *
@@ -15,12 +14,11 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
-
 ?>
 <div class="alert alert-danger" role="alert">
-    <?php
-    foreach ($_REQUEST['erreurs'] as $erreur) {
-        echo '<p>' . htmlspecialchars($erreur) . '</p>';
-    }
-    ?>
+<?php
+foreach ($_REQUEST['erreurs'] as $erreur) {
+    echo '<p>' . htmlspecialchars($erreur) . '</p>';
+}
+?>
 </div>

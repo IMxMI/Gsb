@@ -14,7 +14,6 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 use Outils\Utilitaires;
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -29,17 +28,32 @@ switch ($action) {
     case 'valideConnexion':
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $visiteur = $pdo->getInfosVisiteur($login, $mdp);
-        if (!is_array($visiteur)) {
+        $userLogin = $pdo->getLoginUser($login, $mdp);
+        if (!is_array($userLogin)) {
             Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_connexion.php';
         } else {
-            $id = $visiteur['id'];
-            $nom = $visiteur['nom'];
-            $prenom = $visiteur['prenom'];
-            Utilitaires::connecter($id, $nom, $prenom);
-            header('Location: index.php');
+            $idLogin = $userLogin['id'];
+            $metier = $userLogin['metier'];
+            if ($metier == 'VI') {
+                $user = $pdo->getInfoVisiteur($idLogin);
+                $metierSession = 'visiteur';
+            } else {
+                $user = $pdo->getInfoComptable($idLogin);
+                $metierSession = 'comptable';
+            };
+            if (!is_array($user)) {
+                Utilitaires::ajouterErreur('Erreur de connexion');
+                include PATH_VIEWS . 'v_erreurs.php';
+                include PATH_VIEWS . 'v_connexion.php';
+            } else {
+                $id = $user['id'];
+                $nom = $user['nom'];
+                $prenom = $user['prenom'];
+                Utilitaires::connecter($id, $nom, $prenom, $metierSession);
+                header('Location: index.php');
+            }
         }
         break;
     default:

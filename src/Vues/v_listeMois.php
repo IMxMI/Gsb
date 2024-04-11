@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Vue Liste des mois
  *
@@ -15,7 +14,6 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
-
 ?>
 <h2>Mes fiches de frais</h2>
 <div class="row">
