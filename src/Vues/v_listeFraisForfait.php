@@ -44,6 +44,16 @@
                     <?php
                 }
                 ?>
+                <div class="form-group">
+                    <label for="typeVehicule">Quel est votre type de vehicule : </label>
+                    <select name="typeVehicule" id="typeVehicule" required>
+                        <option value="">--Selectionnez le type de votre vehicule--</option>
+                        <option value="1">4CV Diesel</option>
+                        <option value="2">5/6CV Diesel</option>
+                        <option value="3">4CV Essence</option>
+                        <option value="4">5/6CV Essence</option>
+                    </select>
+                </div>
                 <button class="btn btn-success" type="submit">Ajouter</button>
                 <button class="btn btn-danger" type="reset">Effacer</button>
             </fieldset>

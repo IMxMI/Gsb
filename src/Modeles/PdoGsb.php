@@ -36,6 +36,8 @@
  * @link      http://www.php.net/manual/fr/book.pdo.php PHP Data Objects sur php.net
  */
 
+// Activation des rapports d'erreurs PHP
+
 namespace Modeles;
 
 use PDO;
@@ -303,13 +305,25 @@ class PdoGsb {
                 . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
                 . 'AND fichefrais.mois = :unMois'
         );
-        $requetePrepare->bindParam(
-                ':unNbJustificatifs',
-                $nbJustificatifs,
-                PDO::PARAM_INT
-        );
-        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unNbJustificatifs',$nbJustificatifs,PDO::PARAM_INT);
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur,PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
+    public function majFraisHF($date, $libelle, $montant, $id) {
+        $requetePrepare = $this->connexion->prepare(
+                'UPDATE lignefraishorsforfait '
+                . 'SET lignefraishorsforfait.date = :date, '
+                . 'lignefraishorsforfait.libelle = :libelle, '
+                . 'lignefraishorsforfait.montant = :montant '
+                . 'WHERE lignefraishorsforfait.id = :id'
+        );
+
+        $requetePrepare->bindParam(':date', $date, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':libelle', $libelle, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':montant', $montant, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':id', $id, PDO::PARAM_INT);
         $requetePrepare->execute();
     }
 
@@ -370,7 +384,8 @@ class PdoGsb {
      *
      * @return null
      */
-    public function creeNouvellesLignesFrais($idVisiteur, $mois): void{
+    public function creeNouvellesLignesFrais($idVisiteur, $mois): void {
+        
         $dernierMois = $this->dernierMoisSaisi($idVisiteur);
         $laDerniereFiche = $this->getLesInfosFicheFrais($idVisiteur, $dernierMois);
         if ($laDerniereFiche['idEtat'] == 'CR') {
@@ -471,26 +486,26 @@ class PdoGsb {
         return $lesMois;
     }
 
-    public function getLesMoisDisponiblesBis(): array {
-        $requetePrepare = $this->connexion->prepare(
-                'SELECT DISTINCT fichefrais.mois AS mois FROM fichefrais '
-                . 'ORDER BY fichefrais.mois desc'
-        );
-        //$requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        $lesMois = array();
-        while ($laLigne = $requetePrepare->fetch()) {
-            $mois = $laLigne['mois'];
-            $numAnnee = substr($mois, 0, 4);
-            $numMois = substr($mois, 4, 2);
-            $lesMois[] = array(
-                'mois' => $mois,
-                'numAnnee' => $numAnnee,
-                'numMois' => $numMois
-            );
-        }
-        return $lesMois;
-    }
+//    public function getLesMoisDisponiblesBis(): array {
+//        $requetePrepare = $this->connexion->prepare(
+//                'SELECT DISTINCT fichefrais.mois AS mois FROM fichefrais '
+//                . 'ORDER BY fichefrais.mois desc'
+//        );
+//        //$requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+//        $requetePrepare->execute();
+//        $lesMois = array();
+//        while ($laLigne = $requetePrepare->fetch()) {
+//            $mois = $laLigne['mois'];
+//            $numAnnee = substr($mois, 0, 4);
+//            $numMois = substr($mois, 4, 2);
+//            $lesMois[] = array(
+//                'mois' => $mois,
+//                'numAnnee' => $numAnnee,
+//                'numMois' => $numMois
+//            );
+//        }
+//        return $lesMois;
+//    }
 
     /**
      * Retourne les informations d'une fiche de frais d'un visiteur pour un
@@ -592,7 +607,7 @@ class PdoGsb {
 
     // retourne le nombre de justificatifs d'un visiteur pour un certain mois
 
-    public function getNbJustificatifs($idVisiteur, $mois): int {
+    public function getNbJustificatifs($idVisiteur, $mois){
         $requetePrepare = $this->connexion->prepare(
                 'SELECT fichefrais.nbjustificatifs as nb FROM fichefrais '
                 . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
@@ -604,7 +619,16 @@ class PdoGsb {
         $laLigne = $requetePrepare->fetch();
         return $laLigne['nb'];
     }
+    
+    //refuser les frais hors forfait 
 
-  
-
+    public function refuserFraisHorsForfait($idFrais): void {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE lignefraishorsforfait '
+                . 'SET lignefraishorsforfait.libelle = CONCAT("REFUSE ", lignefraishorsforfait.libelle)'
+                . 'WHERE lignefraishorsforfait.id = :unIdFrais'
+        );
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
 }
