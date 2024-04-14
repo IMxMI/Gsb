@@ -14,9 +14,10 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
+
 use Outils\Utilitaires;
 
-$idVisiteur = $_SESSION['idUser'];
+$idVisiteur = $_SESSION['idVisiteur'];
 $mois = Utilitaires::getMois(date('d/m/Y'));
 $numAnnee = substr($mois, 0, 4);
 $numMois = substr($mois, 4, 2);
@@ -38,7 +39,7 @@ switch ($action) {
         break;
     case 'validerCreationFrais':
         $dateFrais = Utilitaires::dateAnglaisVersFrancais(
-                        filter_input(INPUT_POST, 'dateFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS)
+            filter_input(INPUT_POST, 'dateFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS)
         );
         $libelle = filter_input(INPUT_POST, 'libelle', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $montant = filter_input(INPUT_POST, 'montant', FILTER_VALIDATE_FLOAT);
@@ -53,7 +54,6 @@ switch ($action) {
         $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $pdo->supprimerFraisHorsForfait($idFrais);
         break;
-    
 }
 $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $mois);
 $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $mois);

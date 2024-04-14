@@ -29,5 +29,8 @@
         "psr-4": {
             "Sources\\": "tests"
         }
+    },
+    "require": {
+        "tecnickcom/tcpdf": "^6.7"
     }
 }

@@ -57,6 +57,9 @@ switch ($uc) {
     case 'suiviFicheFrais';
         include PATH_CTRLS . 'c_suiviFicheFrais.php';
         break;
+    case 'pdf';
+        include PATH_CTRLS . 'pdf/c_pdfGenerator.php';
+        break;
     default:
         Utilitaires::ajouterErreur('Page non trouvée, veuillez vérifier votre lien...');
         include PATH_VIEWS . 'v_erreurs.php';
